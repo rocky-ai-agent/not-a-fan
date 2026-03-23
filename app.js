@@ -1,6 +1,16 @@
 const profiles = {
   default: {
     label: "Chicago, IL",
+    askFirst: "Open with the bracket line, then pause before you say anything extra.",
+    keepGoing: "Ask who is still alive in their bracket and let somebody else explain the chaos.",
+    localMove:
+      "If the room wants local texture, pivot to the Bulls or early baseball optimism instead of acting like you watched everything.",
+    confidenceNote:
+      "Works in a generic office conversation and still sounds natural if someone cares a lot more than you do.",
+    bestRoom: "Mixed office chat, group text, or background-TV bar talk.",
+    exitRampTitle: "Leave yourself an exit in every answer.",
+    exitRampText:
+      "Chicago sports talk gets more believable when you sound lightly aware, not deeply committed.",
     safeLine:
       "This time of year I just ask who ruined everyone's bracket and go from there.",
     safeContext:
@@ -125,6 +135,16 @@ const profiles = {
   },
   newyork: {
     label: "New York, NY",
+    askFirst: "Use the local tension line, then stop before it turns into a Knicks or Yankees debate.",
+    keepGoing: "Ask whether people are more stressed about basketball now or more hopeful about baseball.",
+    localMove:
+      "New York works best when you acknowledge the city is balancing playoff nerves with spring optimism.",
+    confidenceNote:
+      "Believable in Manhattan office chatter because it sounds local without pretending you watched full games.",
+    bestRoom: "Office kitchen, group chat, or pre-dinner sports-on-TV conversation.",
+    exitRampTitle: "Sound local, not encyclopedic.",
+    exitRampText:
+      "In New York, broad emotional reads land better than stat-heavy takes if you are clearly not the sports person.",
     safeLine:
       "This time of year New York sports people somehow have basketball stress and baseball hope at the exact same time.",
     safeContext:
@@ -185,6 +205,16 @@ const profiles = {
   },
   boston: {
     label: "Boston, MA",
+    askFirst: "Lead with the playoff-path line, then let the actual fan decide how intense the next minute gets.",
+    keepGoing: "Ask whether this team feels truly dangerous or just regular-season good.",
+    localMove:
+      "Boston chatter gets safer when you frame it around playoff seriousness instead of pretending you know every matchup.",
+    confidenceNote:
+      "This lands because it respects how seriously Boston takes contender talk without requiring you to prove expertise.",
+    bestRoom: "Team lunch, bar TV conversation, or a group chat after work.",
+    exitRampTitle: "Respect the stakes without pretending expertise.",
+    exitRampText:
+      "Boston fans can smell fake confidence fast, so shorter reactions are safer than hard opinions.",
     safeLine:
       "Boston sports people always sound calm right before they start explaining a playoff path in alarming detail.",
     safeContext:
@@ -272,6 +302,10 @@ function resolveProfile(input) {
   return profiles[locationAliases[normalized]] ? locationAliases[normalized] : "default";
 }
 
+function resolveProfileFromSaved(input) {
+  return input ? resolveProfile(input) : "default";
+}
+
 function formatToday() {
   return new Intl.DateTimeFormat("en-US", {
     weekday: "long",
@@ -291,11 +325,25 @@ function renderProfile(profileKey) {
   document.getElementById("safe-line-text").textContent = `"${profile.safeLine}"`;
   document.getElementById("safe-line-context").textContent = profile.safeContext;
   document.getElementById("location-pill").textContent = `Dialed to ${profile.label}`;
+  document.getElementById("location-saved").textContent = `Saved to ${profile.label}`;
+  document.getElementById("hero-ask-first").textContent = profile.askFirst;
+  document.getElementById("hero-if-they-keep-going").textContent = profile.keepGoing;
+  document.getElementById("hero-local-move").textContent = profile.localMove;
+  document.getElementById("confidence-note").textContent = profile.confidenceNote;
+  document.getElementById("best-room").textContent = profile.bestRoom;
   document.getElementById("hero-follow-up").textContent = leadPoint.followUps[0];
   document.getElementById("hero-backup-line").textContent = leadPoint.safeLine;
+  document.getElementById("hero-local-angle").textContent = `${localPoint.title} ${localPoint.safeLine}`;
   document.getElementById("local-angle-title").textContent = `${localPoint.topic} is your clean local angle.`;
   document.getElementById("local-angle-text").textContent = localPoint.summary;
+  document.getElementById("exit-ramp-title").textContent = profile.exitRampTitle;
+  document.getElementById("exit-ramp-text").textContent = profile.exitRampText;
   document.getElementById("today-date").textContent = formatToday();
+  document.getElementById("primary-move-title").textContent = "Ask one follow-up";
+  document.getElementById("primary-move-text").textContent = leadPoint.followUps[0];
+  document.getElementById("snapshot-local-title").textContent = `${profile.label} is the believable setting.`;
+  document.getElementById("snapshot-local-text").textContent = profile.localMove;
+  syncPresetButtons(profileKey);
 
   renderTalkingPoints(talkingPoints);
   renderSeasons(profile.seasons || seasonFallback);
@@ -315,7 +363,10 @@ function renderTalkingPoints(points) {
         <span class="heat-pill">${point.heat}</span>
       </div>
       <h3>${point.title}</h3>
-      <p class="point-summary">${point.summary}</p>
+      <div class="meta-block point-meta-block">
+        <span class="meta-label">Why this is useful</span>
+        <p class="point-summary">${point.summary}</p>
+      </div>
       <div class="say-line">
         <strong>Say this</strong>
         <span>"${point.safeLine}"</span>
@@ -367,7 +418,10 @@ function renderSeasons(items) {
         <span class="heat-pill">${item.state}</span>
       </div>
       <h3>${item.state}</h3>
-      <p>${item.summary}</p>
+      <div class="meta-block point-meta-block">
+        <span class="meta-label">What this means socially</span>
+        <p>${item.summary}</p>
+      </div>
       <div class="season-meta">
         <div class="meta-block">
           <span class="meta-label">People are watching for</span>
@@ -395,7 +449,10 @@ function renderDeeperDives(items) {
         <span class="point-kicker">Keep it moving</span>
       </div>
       <h3>${item.title}</h3>
-      <p>${item.description}</p>
+      <div class="meta-block point-meta-block">
+        <span class="meta-label">When to use this</span>
+        <p>${item.description}</p>
+      </div>
       <ul class="subtle-list">
         ${item.prompts.map((prompt) => `<li>${prompt}</li>`).join("")}
       </ul>
@@ -474,22 +531,50 @@ function wireEvents() {
   document.getElementById("location-form").addEventListener("submit", (event) => {
     event.preventDefault();
     const input = document.getElementById("location-input");
-    const profileKey = resolveProfile(input.value);
-    window.localStorage.setItem(storageKey, input.value.trim());
-    renderProfile(profileKey);
-    showToast(`Local view set to ${profiles[profileKey].label}`);
+    applyLocation(input.value);
+  });
+
+  document.querySelector(".quick-picks").addEventListener("click", (event) => {
+    const preset = event.target.closest("[data-location-preset]");
+    if (!preset) {
+      return;
+    }
+
+    const value = preset.getAttribute("data-location-preset");
+    document.getElementById("location-input").value = value;
+    applyLocation(value);
   });
 
   document.querySelector(".cta-form button").addEventListener("click", () => {
-    showToast("Waitlist capture is a demo for Milestone 1");
+    showToast("Waitlist capture is a demo for Milestone 3");
   });
+}
+
+function syncPresetButtons(profileKey) {
+  document.querySelectorAll("[data-location-preset]").forEach((button) => {
+    const matches = resolveProfile(button.getAttribute("data-location-preset")) === profileKey;
+    button.classList.toggle("is-active", matches);
+    button.setAttribute("aria-pressed", matches ? "true" : "false");
+  });
+}
+
+function applyLocation(rawValue) {
+  const cleaned = rawValue.trim();
+  const profileKey = resolveProfile(cleaned);
+  const savedValue = cleaned || "Chicago";
+  document.getElementById("location-input").value = savedValue;
+  window.localStorage.setItem(storageKey, savedValue);
+  renderProfile(profileKey);
+  showToast(`Local view set to ${profiles[profileKey].label}`);
 }
 
 function init() {
   const savedLocation = window.localStorage.getItem(storageKey);
-  const profileKey = savedLocation ? resolveProfile(savedLocation) : "default";
+  const profileKey = resolveProfileFromSaved(savedLocation);
   if (savedLocation) {
     document.getElementById("location-input").value = savedLocation;
+  } else {
+    document.getElementById("location-input").value = "Chicago";
   }
   document.getElementById("today-date").textContent = formatToday();
   renderProfile(profileKey);
