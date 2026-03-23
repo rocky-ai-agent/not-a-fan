@@ -326,6 +326,7 @@ function renderProfile(profileKey) {
   document.getElementById("safe-line-context").textContent = profile.safeContext;
   document.getElementById("location-pill").textContent = `Dialed to ${profile.label}`;
   document.getElementById("location-saved").textContent = `Saved to ${profile.label}`;
+  document.getElementById("location-toggle-value").textContent = profile.label;
   document.getElementById("hero-ask-first").textContent = profile.askFirst;
   document.getElementById("hero-if-they-keep-going").textContent = profile.keepGoing;
   document.getElementById("hero-local-move").textContent = profile.localMove;
@@ -506,6 +507,14 @@ function showToast(message) {
   }, 1800);
 }
 
+function setLocationPanelOpen(isOpen) {
+  const form = document.getElementById("location-form");
+  const toggle = document.getElementById("location-toggle");
+  form.classList.toggle("is-open", isOpen);
+  toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  toggle.querySelector(".location-toggle-action").textContent = isOpen ? "Close" : "Change";
+}
+
 function wireEvents() {
   document.getElementById("copy-safe-line").addEventListener("click", () => {
     copyText(profiles[activeProfileKey].safeLine, "Safe line copied");
@@ -526,6 +535,11 @@ function wireEvents() {
     if (audioButton) {
       speakText(audioButton.getAttribute("data-pronounce"), audioButton.getAttribute("data-name"));
     }
+  });
+
+  document.getElementById("location-toggle").addEventListener("click", () => {
+    const form = document.getElementById("location-form");
+    setLocationPanelOpen(!form.classList.contains("is-open"));
   });
 
   document.getElementById("location-form").addEventListener("submit", (event) => {
@@ -565,6 +579,7 @@ function applyLocation(rawValue) {
   document.getElementById("location-input").value = savedValue;
   window.localStorage.setItem(storageKey, savedValue);
   renderProfile(profileKey);
+  setLocationPanelOpen(false);
   showToast(`Local view set to ${profiles[profileKey].label}`);
 }
 
@@ -578,6 +593,7 @@ function init() {
   }
   document.getElementById("today-date").textContent = formatToday();
   renderProfile(profileKey);
+  setLocationPanelOpen(false);
   wireEvents();
 }
 

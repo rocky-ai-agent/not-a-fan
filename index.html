@@ -22,28 +22,43 @@
       </div>
 
       <form class="location-control" id="location-form">
-        <div class="location-topline">
-          <label class="location-label" for="location-input">Local preference</label>
-          <p class="location-saved" id="location-saved">Saved to Chicago, IL</p>
+        <button
+          class="location-toggle"
+          id="location-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="location-panel"
+        >
+          <span class="location-toggle-copy">
+            <span class="location-toggle-label">Local preference</span>
+            <span class="location-toggle-value" id="location-toggle-value">Chicago, IL</span>
+          </span>
+          <span class="location-toggle-action">Change</span>
+        </button>
+        <div class="location-panel" id="location-panel">
+          <div class="location-topline">
+            <label class="location-label" for="location-input">Local preference</label>
+            <p class="location-saved" id="location-saved">Saved to Chicago, IL</p>
+          </div>
+          <div class="location-field">
+            <input
+              id="location-input"
+              name="location"
+              type="text"
+              inputmode="text"
+              autocomplete="postal-code"
+              placeholder="Chicago or 60601"
+              aria-describedby="location-note"
+            />
+            <button type="submit">Set</button>
+          </div>
+          <div class="quick-picks" aria-label="Suggested city presets">
+            <button class="quick-pick" type="button" data-location-preset="Chicago">Chicago</button>
+            <button class="quick-pick" type="button" data-location-preset="New York">New York</button>
+            <button class="quick-pick" type="button" data-location-preset="Boston">Boston</button>
+          </div>
+          <p class="location-note" id="location-note">Changes the hometown angle, default opener, and what feels believable to say.</p>
         </div>
-        <div class="location-field">
-          <input
-            id="location-input"
-            name="location"
-            type="text"
-            inputmode="text"
-            autocomplete="postal-code"
-            placeholder="Chicago or 60601"
-            aria-describedby="location-note"
-          />
-          <button type="submit">Set</button>
-        </div>
-        <div class="quick-picks" aria-label="Suggested city presets">
-          <button class="quick-pick" type="button" data-location-preset="Chicago">Chicago</button>
-          <button class="quick-pick" type="button" data-location-preset="New York">New York</button>
-          <button class="quick-pick" type="button" data-location-preset="Boston">Boston</button>
-        </div>
-        <p class="location-note" id="location-note">Changes the hometown angle, default opener, and what feels believable to say.</p>
       </form>
     </header>
 
