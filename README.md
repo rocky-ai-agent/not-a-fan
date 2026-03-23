@@ -1,18 +1,23 @@
 # Not a Fan
 
-Milestone 1 is a simple static landing page for a social-survival product aimed at people who do not follow sports but still need safe, usable small-talk.
+Milestone 2 is a static mobile-first homepage for a social-survival product aimed at people who do not follow sports but still need safe, usable small-talk.
 
 ## What is included
 
-- Mobile-first landing page with a strong safe-line-first hero
+- Mobile-first homepage with a stronger safe-line-first survival flow
 - A city / ZIP preference control in the upper right
+- A fast first-30-seconds hierarchy:
+  - say this now
+  - ask this next
+  - use this local angle
 - Required sections:
   - `Todays Talking Points`
   - `What season is it currently?`
   - `Deeper Dives`
 - Pronunciation and audio affordances for player names using the browser speech API
-- Premium-ready teaser copy and CTA without payment flow
+- Stronger conversion framing and waitlist CTA without payment flow
 - Believable demo data for a busy late-March sports week
+- Current date rendered in-browser for the quick context panel
 
 ## Run locally
 
@@ -27,5 +32,5 @@ Then open `http://localhost:4173`.
 ## Notes
 
 - Location preferences currently switch between a few demo profiles and fall back to Chicago by default.
-- Waitlist capture is a Milestone 1 placeholder and does not submit anywhere.
+- Waitlist capture remains a placeholder and does not submit anywhere.
 - Audio playback depends on browser support for `speechSynthesis`.

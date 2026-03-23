@@ -272,14 +272,30 @@ function resolveProfile(input) {
   return profiles[locationAliases[normalized]] ? locationAliases[normalized] : "default";
 }
 
+function formatToday() {
+  return new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC"
+  }).format(new Date());
+}
+
 function renderProfile(profileKey) {
   activeProfileKey = profileKey;
   const profile = profiles[profileKey];
   const talkingPoints = profile.talkingPoints || profiles.default.talkingPoints;
+  const leadPoint = talkingPoints[0];
+  const localPoint = talkingPoints[1] || talkingPoints[0];
 
   document.getElementById("safe-line-text").textContent = `"${profile.safeLine}"`;
   document.getElementById("safe-line-context").textContent = profile.safeContext;
   document.getElementById("location-pill").textContent = `Dialed to ${profile.label}`;
+  document.getElementById("hero-follow-up").textContent = leadPoint.followUps[0];
+  document.getElementById("hero-backup-line").textContent = leadPoint.safeLine;
+  document.getElementById("local-angle-title").textContent = `${localPoint.topic} is your clean local angle.`;
+  document.getElementById("local-angle-text").textContent = localPoint.summary;
+  document.getElementById("today-date").textContent = formatToday();
 
   renderTalkingPoints(talkingPoints);
   renderSeasons(profile.seasons || seasonFallback);
@@ -299,14 +315,17 @@ function renderTalkingPoints(points) {
         <span class="heat-pill">${point.heat}</span>
       </div>
       <h3>${point.title}</h3>
-      <p>${point.summary}</p>
+      <p class="point-summary">${point.summary}</p>
       <div class="say-line">
-        <strong>Safe line</strong>
+        <strong>Say this</strong>
         <span>"${point.safeLine}"</span>
       </div>
-      <ul class="subtle-list">
-        ${point.followUps.map((item) => `<li>${item}</li>`).join("")}
-      </ul>
+      <div class="follow-up-block">
+        <span class="meta-label">If they keep going</span>
+        <ul class="subtle-list">
+          ${point.followUps.map((item) => `<li>${item}</li>`).join("")}
+        </ul>
+      </div>
       <div class="name-row">
         ${point.names
           .map(
@@ -373,7 +392,7 @@ function renderDeeperDives(items) {
     card.className = "deep-dive-card";
     card.innerHTML = `
       <div class="deep-dive-topline">
-        <span class="point-kicker">Deeper dive</span>
+        <span class="point-kicker">Keep it moving</span>
       </div>
       <h3>${item.title}</h3>
       <p>${item.description}</p>
@@ -472,6 +491,7 @@ function init() {
   if (savedLocation) {
     document.getElementById("location-input").value = savedLocation;
   }
+  document.getElementById("today-date").textContent = formatToday();
   renderProfile(profileKey);
   wireEvents();
 }

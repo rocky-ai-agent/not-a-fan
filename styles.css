@@ -213,6 +213,54 @@ body::before {
   color: var(--muted);
 }
 
+.hero-proof {
+  margin-top: 1rem;
+  padding: 0.8rem 0.9rem;
+  border-left: 4px solid var(--accent);
+  border-radius: 16px;
+  background: rgba(255, 248, 240, 0.68);
+}
+
+.hero-proof p,
+.hero-checklist li,
+.section-note {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.hero-proof p {
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.hero-checklist {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-checklist li {
+  padding: 0.75rem 0.85rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(82, 54, 28, 0.1);
+ }
+
 .safe-line-card {
   padding: 1rem;
   border-radius: var(--radius-lg);
@@ -258,10 +306,46 @@ body::before {
   letter-spacing: -0.03em;
 }
 
+.safe-line-coach {
+  margin: 0.9rem 0 0;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
 .safe-line-context {
   margin: 0 0 0.9rem;
   color: var(--muted);
   line-height: 1.55;
+}
+
+.survival-sequence {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0 0 0.95rem;
+}
+
+.sequence-step {
+  padding: 0.85rem 0.9rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.64);
+  border: 1px solid rgba(72, 53, 34, 0.1);
+}
+
+.sequence-label {
+  display: block;
+  margin-bottom: 0.28rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.sequence-step p {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.45;
 }
 
 .safe-line-actions {
@@ -280,6 +364,7 @@ body::before {
 }
 
 .snapshot-grid,
+.priority-strip,
 .talking-points,
 .season-list,
 .deep-dive-list {
@@ -287,8 +372,45 @@ body::before {
   gap: 0.9rem;
 }
 
+.priority-strip {
+  margin-bottom: 1rem;
+}
+
+.priority-card {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: rgba(255, 252, 247, 0.8);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.priority-card h2 {
+  margin: 0.3rem 0 0.45rem;
+  font-size: clamp(1.45rem, 7vw, 2.15rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.priority-card p:last-child {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.priority-card-strong {
+  background: linear-gradient(160deg, rgba(187, 75, 42, 0.96), rgba(143, 46, 20, 0.96));
+  color: #fff8f4;
+}
+
+.priority-card-strong .snapshot-label,
+.priority-card-strong p:last-child {
+  color: rgba(255, 248, 244, 0.86);
+}
+
 .snapshot-card,
 .accent-card,
+.priority-card,
 .point-card,
 .season-card,
 .deep-dive-card {
@@ -334,6 +456,11 @@ body::before {
   max-width: 13ch;
 }
 
+.section-note {
+  max-width: 36rem;
+  margin: 0.6rem 0 0;
+}
+
 .point-card,
 .season-card,
 .deep-dive-card {
@@ -357,8 +484,12 @@ body::before {
   line-height: 1.55;
 }
 
+.point-summary {
+  min-height: 4.7rem;
+}
+
 .subtle-list {
-  margin: 0.8rem 0 0;
+  margin: 0.45rem 0 0;
   padding-left: 1rem;
 }
 
@@ -378,6 +509,10 @@ body::before {
   display: block;
   margin-bottom: 0.25rem;
   color: var(--ink);
+}
+
+.follow-up-block {
+  margin-top: 0.9rem;
 }
 
 .point-actions,
@@ -502,6 +637,10 @@ body::before {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .priority-strip {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+
   .talking-points,
   .deep-dive-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -531,7 +670,25 @@ body::before {
     width: 100%;
   }
 
+  .hero-checklist li,
+  .sequence-step,
+  .priority-card,
+  .snapshot-card,
+  .point-card,
+  .season-card,
+  .deep-dive-card,
+  .cta-panel,
+  .hero-copy,
+  .safe-line-card {
+    border-radius: 20px;
+  }
+
+  .hero-copy h1 {
+    max-width: 10ch;
+  }
+
   .safe-line-actions,
+  .hero-actions,
   .point-actions,
   .cta-form {
     flex-direction: column;
@@ -542,7 +699,8 @@ body::before {
   .ghost-button,
   .copy-button,
   .cta-form button,
-  .cta-form input {
+  .cta-form input,
+  .hero-link {
     width: 100%;
   }
 }

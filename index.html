@@ -42,24 +42,47 @@
     <main>
       <section class="hero" id="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Sports small-talk survival</p>
-          <h1>The safest thing to say when everyone else suddenly cares about sports.</h1>
+          <p class="eyebrow">Sports small-talk survival tool</p>
+          <h1>Walk into sports small talk with one safe sentence already loaded.</h1>
           <p class="hero-lede">
-            Not a Fan gives you a clean opener, the local angle, and just enough context to survive the office, the group text, or the bar TV without pretending you watched every game.
+            Not a Fan is built for the first 30 seconds: one line you can say now, one follow-up if they keep going, and one local angle so you can get through the office, the group text, or the bar TV without performing fandom.
           </p>
+          <div class="hero-proof">
+            <p>Use it before the meeting starts, before the game is on behind you, or before someone asks if you saw that ending.</p>
+          </div>
+          <div class="hero-actions">
+            <a class="primary-button hero-link" href="#safe-line-card">Start with today's line</a>
+            <a class="ghost-button hero-link" href="#talking-points">See backup talking points</a>
+          </div>
+          <ul class="hero-checklist" aria-label="What the app gives you fast">
+            <li>One safe sentence to open with</li>
+            <li>One follow-up question to hand the conversation back</li>
+            <li>Your local team angle without extra reading</li>
+          </ul>
         </div>
 
-        <div class="safe-line-card">
+        <div class="safe-line-card" id="safe-line-card">
           <div class="safe-line-header">
             <p class="safe-line-label">Use this first</p>
             <span class="status-pill" id="location-pill">Defaulting to Chicago, IL</span>
           </div>
+          <p class="safe-line-coach">If someone brings up sports right now, say this sentence almost exactly as written.</p>
           <blockquote id="safe-line-text">
             “This time of year I just ask who ruined everyone’s bracket and go from there.”
           </blockquote>
           <p class="safe-line-context" id="safe-line-context">
             Safe because it works whether the room is talking March Madness, a hot local team, or tonight’s schedule.
           </p>
+          <div class="survival-sequence" aria-label="What to do next">
+            <div class="sequence-step">
+              <span class="sequence-label">Then ask</span>
+              <p id="hero-follow-up">Was that as wild as it looked?</p>
+            </div>
+            <div class="sequence-step">
+              <span class="sequence-label">If you need a backup</span>
+              <p id="hero-backup-line">At this point nobody's bracket is clean, so people are mostly competing on vibes.</p>
+            </div>
+          </div>
           <div class="safe-line-actions">
             <button class="primary-button" id="copy-safe-line" type="button">Copy safe line</button>
             <button class="ghost-button" id="play-safe-line" type="button">Hear it out loud</button>
@@ -67,11 +90,24 @@
         </div>
       </section>
 
+      <section class="priority-strip" aria-label="Conversation survival flow">
+        <article class="priority-card priority-card-strong">
+          <p class="snapshot-label">First 30 seconds</p>
+          <h2>Say one line. Ask one question. Stop talking.</h2>
+          <p>Not a Fan works best when it lowers your speaking burden instead of turning you into a fake analyst.</p>
+        </article>
+        <article class="priority-card">
+          <p class="snapshot-label">Fastest local move</p>
+          <h2 id="local-angle-title">Chicago is your clean default angle.</h2>
+          <p id="local-angle-text">Use the local team pulse if the room wants a hometown take without requiring details.</p>
+        </article>
+      </section>
+
       <section class="snapshot-grid" aria-label="Current quick context">
         <article class="snapshot-card">
           <p class="snapshot-label">Updated for</p>
-          <h2>Monday, March 23</h2>
-          <p>Office-safe demo data tuned for a busy sports week.</p>
+          <h2 id="today-date">Monday, March 23</h2>
+          <p>Office-safe demo data tuned for a busy late-March sports week.</p>
         </article>
         <article class="snapshot-card">
           <p class="snapshot-label">Most useful move</p>
@@ -79,16 +115,17 @@
           <p>Say the line, then ask “Was that as wild as it looked?” and let someone else take over.</p>
         </article>
         <article class="snapshot-card accent-card">
-          <p class="snapshot-label">Premium-ready teaser</p>
-          <h2>Coming next: local alerts before you walk into the room</h2>
-          <p>Daily city-specific prompts, rivalry explainers, and audio rehearsals.</p>
+          <p class="snapshot-label">Upgrade path</p>
+          <h2>Get a daily line before the meeting, happy hour, or group text starts.</h2>
+          <p>Join the waitlist for city-aware prompts, rivalry explainers, and commute-length audio rehearsal.</p>
         </article>
       </section>
 
       <section class="section" id="talking-points">
         <div class="section-heading">
           <p class="eyebrow">1. Todays Talking Points</p>
-          <h2>Three things you can mention without sounding fake.</h2>
+          <h2>Three low-effort ways to keep the conversation moving.</h2>
+          <p class="section-note">Each card gives you a simple read, a sentence you can safely say, and pronunciation help if a name comes up.</p>
         </div>
         <div class="talking-points" id="talking-points-list"></div>
       </section>
@@ -97,6 +134,7 @@
         <div class="section-heading">
           <p class="eyebrow">2. What season is it currently?</p>
           <h2>The cheat sheet for what people are emotionally invested in right now.</h2>
+          <p class="section-note">Use this when you need orientation fast and do not know why a room suddenly has strong opinions.</p>
         </div>
         <div class="season-list" id="season-list"></div>
       </section>
@@ -104,23 +142,24 @@
       <section class="section" id="deeper-dives">
         <div class="section-heading">
           <p class="eyebrow">3. Deeper Dives</p>
-          <h2>If someone keeps talking, here is your second sentence.</h2>
+          <h2>If someone keeps talking, this is how you survive the next minute.</h2>
+          <p class="section-note">These are optional. The product still works if you only use the safe line and one follow-up.</p>
         </div>
         <div class="deep-dive-list" id="deep-dive-list"></div>
       </section>
 
       <section class="cta-panel">
         <div>
-          <p class="eyebrow">Call to action</p>
-          <h2>Join the waitlist for daily survival drops.</h2>
+          <p class="eyebrow">Daily survival drops</p>
+          <h2>Get tomorrow's safest sports line before you need it.</h2>
           <p>
-            One safe line, one local angle, one backup talking point. Premium will add commute-time audio practice and city-specific sports radar.
+            One safe opener, one follow-up, one local angle. Premium will add city-specific alerts, pronunciation rehearsal, and pre-meeting prompts you can hear on the way in.
           </p>
         </div>
         <form class="cta-form">
           <label class="sr-only" for="email">Email</label>
           <input id="email" type="email" placeholder="name@company.com" />
-          <button class="primary-button" type="button">Notify me</button>
+          <button class="primary-button" type="button">Join the waitlist</button>
         </form>
       </section>
     </main>
