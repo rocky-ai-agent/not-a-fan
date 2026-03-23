@@ -776,19 +776,52 @@ a:focus-visible,
 }
 
 @media (max-width: 520px) {
+  .page-shell {
+    padding: 14px 12px 48px;
+  }
+
   .site-header {
     align-items: stretch;
     flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .brand-lockup {
+    max-width: none;
   }
 
   .location-control {
     width: 100%;
+    padding: 0.7rem;
+    border-radius: 16px;
+    box-shadow: 0 14px 30px rgba(77, 44, 12, 0.1);
   }
 
   .location-topline {
     align-items: flex-start;
     flex-direction: column;
     gap: 0.2rem;
+  }
+
+  .location-label,
+  .location-saved {
+    font-size: 0.68rem;
+  }
+
+  .location-field input,
+  .location-field button {
+    padding-top: 0.72rem;
+    padding-bottom: 0.72rem;
+  }
+
+  .location-note,
+  .quick-picks {
+    display: none;
+  }
+
+  .hero {
+    gap: 0.85rem;
   }
 
   .hero-checklist li,
@@ -805,8 +838,61 @@ a:focus-visible,
     border-radius: 20px;
   }
 
+  .hero-copy {
+    padding: 1.1rem 1rem 1rem;
+  }
+
   .hero-copy h1 {
-    max-width: 10ch;
+    max-width: 11ch;
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
+    line-height: 0.95;
+  }
+
+  .hero-lede {
+    margin-top: 0.8rem;
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .hero-proof {
+    margin-top: 0.85rem;
+    padding: 0.75rem 0.8rem;
+  }
+
+  .hero-actions {
+    gap: 0.55rem;
+    margin-top: 0.9rem;
+  }
+
+  .hero-brief,
+  .hero-checklist {
+    display: none;
+  }
+
+  .safe-line-card {
+    padding: 0.95rem;
+  }
+
+  .safe-line-header,
+  .confidence-band {
+    gap: 0.55rem;
+  }
+
+  .safe-line-card blockquote {
+    margin-top: 0.8rem;
+    font-size: clamp(1.95rem, 9.5vw, 2.45rem);
+    line-height: 0.98;
+  }
+
+  .safe-line-coach,
+  .safe-line-context,
+  .sequence-step p,
+  .confidence-band p {
+    line-height: 1.4;
+  }
+
+  .survival-sequence {
+    gap: 0.6rem;
   }
 
   .safe-line-actions,
