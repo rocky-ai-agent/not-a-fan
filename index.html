@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Not a Fan helps non-fans survive sports small talk with a safe line, local context, quick talking points, and optional deeper dives."
+  />
+  <title>Not a Fan | Sports Small-Talk Survival</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="brand-lockup">
+        <p class="eyebrow">Social survival for non-fans</p>
+        <a href="#hero" class="brand">Not a Fan</a>
+      </div>
+
+      <form class="location-control" id="location-form">
+        <label class="location-label" for="location-input">City / ZIP</label>
+        <div class="location-field">
+          <input
+            id="location-input"
+            name="location"
+            type="text"
+            inputmode="text"
+            autocomplete="postal-code"
+            placeholder="Chicago or 60601"
+            aria-describedby="location-note"
+          />
+          <button type="submit">Set</button>
+        </div>
+        <p class="location-note" id="location-note">Used to bias local teams and timing.</p>
+      </form>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Sports small-talk survival</p>
+          <h1>The safest thing to say when everyone else suddenly cares about sports.</h1>
+          <p class="hero-lede">
+            Not a Fan gives you a clean opener, the local angle, and just enough context to survive the office, the group text, or the bar TV without pretending you watched every game.
+          </p>
+        </div>
+
+        <div class="safe-line-card">
+          <div class="safe-line-header">
+            <p class="safe-line-label">Use this first</p>
+            <span class="status-pill" id="location-pill">Defaulting to Chicago, IL</span>
+          </div>
+          <blockquote id="safe-line-text">
+            “This time of year I just ask who ruined everyone’s bracket and go from there.”
+          </blockquote>
+          <p class="safe-line-context" id="safe-line-context">
+            Safe because it works whether the room is talking March Madness, a hot local team, or tonight’s schedule.
+          </p>
+          <div class="safe-line-actions">
+            <button class="primary-button" id="copy-safe-line" type="button">Copy safe line</button>
+            <button class="ghost-button" id="play-safe-line" type="button">Hear it out loud</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="snapshot-grid" aria-label="Current quick context">
+        <article class="snapshot-card">
+          <p class="snapshot-label">Updated for</p>
+          <h2>Monday, March 23</h2>
+          <p>Office-safe demo data tuned for a busy sports week.</p>
+        </article>
+        <article class="snapshot-card">
+          <p class="snapshot-label">Most useful move</p>
+          <h2>Ask one follow-up</h2>
+          <p>Say the line, then ask “Was that as wild as it looked?” and let someone else take over.</p>
+        </article>
+        <article class="snapshot-card accent-card">
+          <p class="snapshot-label">Premium-ready teaser</p>
+          <h2>Coming next: local alerts before you walk into the room</h2>
+          <p>Daily city-specific prompts, rivalry explainers, and audio rehearsals.</p>
+        </article>
+      </section>
+
+      <section class="section" id="talking-points">
+        <div class="section-heading">
+          <p class="eyebrow">1. Todays Talking Points</p>
+          <h2>Three things you can mention without sounding fake.</h2>
+        </div>
+        <div class="talking-points" id="talking-points-list"></div>
+      </section>
+
+      <section class="section" id="season-check">
+        <div class="section-heading">
+          <p class="eyebrow">2. What season is it currently?</p>
+          <h2>The cheat sheet for what people are emotionally invested in right now.</h2>
+        </div>
+        <div class="season-list" id="season-list"></div>
+      </section>
+
+      <section class="section" id="deeper-dives">
+        <div class="section-heading">
+          <p class="eyebrow">3. Deeper Dives</p>
+          <h2>If someone keeps talking, here is your second sentence.</h2>
+        </div>
+        <div class="deep-dive-list" id="deep-dive-list"></div>
+      </section>
+
+      <section class="cta-panel">
+        <div>
+          <p class="eyebrow">Call to action</p>
+          <h2>Join the waitlist for daily survival drops.</h2>
+          <p>
+            One safe line, one local angle, one backup talking point. Premium will add commute-time audio practice and city-specific sports radar.
+          </p>
+        </div>
+        <form class="cta-form">
+          <label class="sr-only" for="email">Email</label>
+          <input id="email" type="email" placeholder="name@company.com" />
+          <button class="primary-button" type="button">Notify me</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
