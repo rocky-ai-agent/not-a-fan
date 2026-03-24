@@ -939,9 +939,7 @@ function renderState(options = {}) {
   const sport = sportProfiles[activeSportKey];
 
   document.getElementById("hero-lede").textContent = profile.heroLede;
-  document.getElementById("hero-proof").textContent = profile.heroProof;
   document.getElementById("selector-helper").textContent = profile.selectorHelper;
-  document.getElementById("situation-copy").textContent = sport.situation;
   document.getElementById("safe-line-text").textContent = `"${profile.safeLine}"`;
   document.getElementById("safe-line-context").textContent = isFallback
     ? `No dedicated ${fallbackCity} script yet. ${sport.shortLabel} stays in place and the city layer deliberately falls back to broad.`
@@ -961,11 +959,7 @@ function renderState(options = {}) {
   document.getElementById("confidence-note").textContent = profile.confidenceNote;
   document.getElementById("best-room").textContent = profile.bestRoom;
   document.getElementById("personalize-title").textContent = profile.personalizeTitle;
-  document.getElementById("personalize-description").textContent = profile.personalizeDescription;
   document.getElementById("cta-location").value = `${sport.label}${activeLocationLabel && activeLocationLabel !== cityProfiles.default.label ? ` | ${activeLocationLabel}` : ""}`;
-  document.getElementById("location-note").textContent = isFallback
-    ? `${fallbackCity} is outside the current market set. We keep the ${sport.shortLabel} example and use the broad city fallback instead of pretending we know that market.`
-    : profile.note;
 
   syncSportButtons();
   syncCityButtons();
@@ -1054,7 +1048,6 @@ async function handleCtaSubmit(event) {
   const form = document.getElementById("cta-form");
   const input = document.getElementById("email");
   const submitButton = document.getElementById("cta-submit");
-  const meta = document.getElementById("cta-meta");
   const email = input.value.trim();
 
   input.value = email;
@@ -1093,16 +1086,12 @@ async function handleCtaSubmit(event) {
 
     form.reset();
     document.getElementById("cta-location").value = `${sportProfiles[activeSportKey].label}${activeLocationLabel && activeLocationLabel !== cityProfiles.default.label ? ` | ${activeLocationLabel}` : ""}`;
-    meta.textContent = `Request sent. If this is the first submission, ${signupConfig.inbox} still needs to confirm FormSubmit's activation email.`;
-    meta.classList.add("is-live");
-    showToast("Request sent");
+    showToast("You're in. First line lands tomorrow morning.");
   } catch (error) {
-    meta.textContent = `Signup isn't fully armed yet. First fix: activate FormSubmit in ${signupConfig.inbox}. Then submissions work without mailto nonsense.`;
-    meta.classList.remove("is-live");
-    showToast(error.message || "Signup failed");
+    showToast(error.message || "Something went wrong — try again.");
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = "Get early access";
+    submitButton.textContent = "Send me the daily line";
   }
 }
 

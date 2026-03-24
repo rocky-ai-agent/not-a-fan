@@ -24,42 +24,25 @@
 
     <main>
       <section class="hero" id="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Sports small-talk survival tool</p>
+        <div class=”hero-copy”>
           <h1>Sound plugged in without pretending to be a fan.</h1>
-          <p class="hero-lede" id="hero-lede">
-            Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive office chat, client dinners, group texts, and the bar TV in about ten seconds.
+          <p class=”hero-lede” id=”hero-lede”>
+            One safe opener, one follow-up, one local angle. Ready in ten seconds.
           </p>
-          <div class="hero-proof">
-            <p id="hero-proof">Made for the exact moment somebody turns to you and says, “Did your bracket get smoked too?”</p>
-          </div>
-          <div class="sport-selector" aria-labelledby="sport-selector-title">
-            <div class="sport-selector-topline">
-              <p class="selector-label" id="sport-selector-title">Pick the sport first</p>
-              <p class="selector-note">This is the main control. City only refines the local angle after.</p>
-            </div>
-            <p class="selector-helper" id="selector-helper">Start with College hoops. It is the safest default right now for random office and group-chat sports talk.</p>
-            <div class="sport-picks" role="group" aria-label="Quick sport presets">
-              <button class="sport-pick is-active" type="button" data-sport-preset="college" aria-pressed="true">College hoops</button>
-              <button class="sport-pick" type="button" data-sport-preset="nba" aria-pressed="false">NBA</button>
-              <button class="sport-pick" type="button" data-sport-preset="mlb" aria-pressed="false">MLB</button>
-              <button class="sport-pick" type="button" data-sport-preset="nfl" aria-pressed="false">NFL</button>
-              <button class="sport-pick" type="button" data-sport-preset="nhl" aria-pressed="false">NHL</button>
+          <div class=”sport-selector” aria-labelledby=”sport-selector-title”>
+            <p class=”selector-label” id=”sport-selector-title”>Pick the sport</p>
+            <p class=”selector-helper” id=”selector-helper”>Start with College hoops. It is the safest default right now for random office and group-chat sports talk.</p>
+            <div class=”sport-picks” role=”group” aria-label=”Quick sport presets”>
+              <button class=”sport-pick is-active” type=”button” data-sport-preset=”college” aria-pressed=”true”>College hoops</button>
+              <button class=”sport-pick” type=”button” data-sport-preset=”nba” aria-pressed=”false”>NBA</button>
+              <button class=”sport-pick” type=”button” data-sport-preset=”mlb” aria-pressed=”false”>MLB</button>
+              <button class=”sport-pick” type=”button” data-sport-preset=”nfl” aria-pressed=”false”>NFL</button>
+              <button class=”sport-pick” type=”button” data-sport-preset=”nhl” aria-pressed=”false”>NHL</button>
             </div>
           </div>
-          <div class="hero-situations" aria-label="Where this helps">
-            <article class="situation-card">
-              <span class="snapshot-label">For</span>
-              <p id="situation-copy">Office kitchens, awkward client chat, and group texts that suddenly turn into bracket talk.</p>
-            </article>
-            <article class="situation-card">
-              <span class="snapshot-label">How to use it</span>
-              <p>Use the line. Ask the follow-up. Let the real fan take it from there.</p>
-            </article>
-          </div>
-          <div class="hero-actions">
-            <a class="primary-button hero-link" href="#cta">Request early access</a>
-            <a class="ghost-button hero-link" href="#safe-line-card">See today's example</a>
+          <div class=”hero-actions”>
+            <a class=”primary-button hero-link” href=”#cta”>Get the daily line</a>
+            <a class=”ghost-button hero-link” href=”#safe-line-card”>See today's example</a>
           </div>
         </div>
 
@@ -94,14 +77,13 @@
 
       <section class="personalize-panel" aria-labelledby="personalize-title">
         <div class="personalize-copy">
-          <p class="eyebrow">Optional city refinement</p>
-          <h2 id="personalize-title">Want the local angle to sound a little more like your city?</h2>
-          <p id="personalize-description">Start with the sport-specific line above. Add a city only if you want the hometown version to feel sharper. If we do not cover your city yet, we fall back on purpose instead of bluffing.</p>
+          <p class="eyebrow">Optional</p>
+          <h2 id="personalize-title">Add your city for a sharper local angle.</h2>
         </div>
         <form class="location-control" id="location-form">
           <div class="location-topline">
-            <label class="location-label" for="location-input">Optional city</label>
-            <p class="location-saved" id="location-saved">Currently using the broad default</p>
+            <label class="location-label" for="location-input">Your city</label>
+            <p class="location-saved" id="location-saved">Using broad default</p>
           </div>
           <div class="location-field">
             <input
@@ -110,12 +92,11 @@
               type="text"
               inputmode="text"
               autocomplete="address-level2"
-              placeholder="Chicago, Phoenix, Dallas, Seattle"
-              aria-describedby="location-note"
+              placeholder="Chicago, Dallas, Atlanta…"
               list="location-suggestions"
             />
             <datalist id="location-suggestions"></datalist>
-            <button type="submit">Refine city</button>
+            <button type="submit">Apply</button>
           </div>
           <div class="quick-picks" aria-label="Suggested city presets">
             <button class="quick-pick" type="button" data-location-preset="Chicago">Chicago</button>
@@ -125,7 +106,6 @@
             <button class="quick-pick" type="button" data-location-preset="Phoenix">Phoenix</button>
             <button class="quick-pick" type="button" data-location-preset="Atlanta">Atlanta</button>
           </div>
-          <p class="location-note" id="location-note">Human city names only. We cover the major sports markets and use a deliberate broad fallback for everything else.</p>
         </form>
       </section>
 
@@ -144,20 +124,18 @@
 
       <section class="cta-panel" id="cta">
         <div class="cta-copy">
-          <p class="eyebrow">Early access</p>
-          <h2>Get tomorrow's line before tomorrow's small talk.</h2>
+          <p class="eyebrow">Free daily line</p>
+          <h2>Never get caught flat-footed again.</h2>
           <p>
-            One safe opener. One follow-up. One local angle. No box scores. No fake fandom required.
+            One opener. One follow-up. One local angle. Every morning before the small talk starts.
           </p>
-          <p class="cta-trust">Real signup, static site. Requests route through FormSubmit to hello@notafan.app.</p>
-          <p class="cta-meta" id="cta-meta">Takes one field now. First live submission triggers a one-time inbox activation for that address.</p>
         </div>
         <div class="cta-form-wrap">
           <form class="cta-form" id="cta-form" novalidate>
             <label class="sr-only" for="email">Email</label>
             <input id="email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />
             <input id="cta-location" name="location" type="hidden" value="Broad default" />
-            <button class="primary-button" id="cta-submit" type="submit">Get early access</button>
+            <button class="primary-button" id="cta-submit" type="submit">Send me the daily line</button>
           </form>
         </div>
       </section>
