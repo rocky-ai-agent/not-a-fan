@@ -132,7 +132,7 @@
       </section>
 
       <section class="cta-panel" id="cta">
-        <div>
+        <div class="cta-copy">
           <p class="eyebrow">Early access</p>
           <h2>Get tomorrow's line before tomorrow's small talk.</h2>
           <p>
@@ -141,12 +141,14 @@
           <p class="cta-trust">Real signup, static site. Requests route through FormSubmit to hello@notafan.app.</p>
           <p class="cta-meta" id="cta-meta">Takes one field now. First live submission triggers a one-time inbox activation for that address.</p>
         </div>
-        <form class="cta-form" id="cta-form" novalidate>
-          <label class="sr-only" for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />
-          <input id="cta-location" name="location" type="hidden" value="Chicago, IL" />
-          <button class="primary-button" id="cta-submit" type="submit">Get early access</button>
-        </form>
+        <div class="cta-form-wrap">
+          <form class="cta-form" id="cta-form" novalidate>
+            <label class="sr-only" for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />
+            <input id="cta-location" name="location" type="hidden" value="Chicago, IL" />
+            <button class="primary-button" id="cta-submit" type="submit">Get early access</button>
+          </form>
+        </div>
       </section>
     </main>
   </div>
