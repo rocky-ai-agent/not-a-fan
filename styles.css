@@ -185,7 +185,7 @@ body::before {
 
 .location-note {
   color: var(--muted);
-  max-width: 28ch;
+  max-width: 46ch;
   font-size: 0.68rem;
 }
 

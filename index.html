@@ -82,7 +82,7 @@
         <div class="personalize-copy">
           <p class="eyebrow">Optional personalization</p>
           <h2 id="personalize-title">Want the hometown angle to sound more like your city?</h2>
-          <p>Start with the default line. If you want a more local version, pick a city and the example updates instantly.</p>
+          <p>Start with the default line. If you want a more local version, enter a common sports market and the example updates instantly. If we do not cover your city yet, we fall back on purpose instead of bluffing.</p>
         </div>
         <form class="location-control" id="location-form">
           <div class="location-topline">
@@ -96,17 +96,22 @@
               type="text"
               inputmode="text"
               autocomplete="address-level2"
-              placeholder="Chicago, New York, Boston"
+              placeholder="Chicago, Phoenix, Dallas, Seattle"
               aria-describedby="location-note"
+              list="location-suggestions"
             />
+            <datalist id="location-suggestions"></datalist>
             <button type="submit">Update city</button>
           </div>
           <div class="quick-picks" aria-label="Suggested city presets">
             <button class="quick-pick" type="button" data-location-preset="Chicago">Chicago</button>
             <button class="quick-pick" type="button" data-location-preset="New York">New York</button>
-            <button class="quick-pick" type="button" data-location-preset="Boston">Boston</button>
+            <button class="quick-pick" type="button" data-location-preset="Los Angeles">Los Angeles</button>
+            <button class="quick-pick" type="button" data-location-preset="Dallas">Dallas</button>
+            <button class="quick-pick" type="button" data-location-preset="Phoenix">Phoenix</button>
+            <button class="quick-pick" type="button" data-location-preset="Atlanta">Atlanta</button>
           </div>
-          <p class="location-note" id="location-note">Human city names only. No ZIP-code homework.</p>
+          <p class="location-note" id="location-note">Human city names only. We cover the major sports markets and use a deliberate broad fallback for everything else.</p>
         </form>
       </section>
 
