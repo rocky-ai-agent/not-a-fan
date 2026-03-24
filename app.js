@@ -1049,6 +1049,7 @@ async function handleCtaSubmit(event) {
   const form = document.getElementById("cta-form");
   const input = document.getElementById("email");
   const submitButton = document.getElementById("cta-submit");
+  const fallbackMessage = document.getElementById("cta-fallback-message");
   const email = input.value.trim();
 
   input.value = email;
@@ -1056,6 +1057,7 @@ async function handleCtaSubmit(event) {
     return;
   }
 
+  fallbackMessage.hidden = true;
   submitButton.disabled = true;
   submitButton.textContent = "Sending...";
 
@@ -1089,10 +1091,11 @@ async function handleCtaSubmit(event) {
     wrap.innerHTML = `
       <div class="signup-success" role="status" aria-live="polite">
         <p class="signup-success-heading">You're on the list.</p>
-        <p class="signup-success-body">We'll send new lines as the product grows. The safe line above is ready to use right now — no waiting.</p>
+        <p class="signup-success-body">We’ll send one short daily line when the inbox flow is live. The safe line above is ready to use right now — no waiting.</p>
       </div>
     `;
   } catch (error) {
+    fallbackMessage.hidden = false;
     showToast(error.message || "Something went wrong — try again.");
   } finally {
     submitButton.disabled = false;
