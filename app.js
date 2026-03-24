@@ -1091,7 +1091,7 @@ async function handleCtaSubmit(event) {
     wrap.innerHTML = `
       <div class="signup-success" role="status" aria-live="polite">
         <p class="signup-success-heading">You’re in.</p>
-        <p class="signup-success-body">Each weekday morning you’ll get one safe opener, one follow-up, and one local angle. The one above is ready right now.</p>
+        <p class="signup-success-body">We’ll notify you when daily delivery goes live. The line above is ready right now.</p>
       </div>
     `;
   } catch (error) {
@@ -1099,7 +1099,7 @@ async function handleCtaSubmit(event) {
     showToast(error.message || "Something went wrong — try again.");
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = "Send me the weekday lines";
+    submitButton.textContent = "Get early access";
   }
 }
 
