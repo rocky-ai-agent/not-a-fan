@@ -33,5 +33,6 @@ Then open `http://localhost:4173`.
 ## Notes
 
 - Location preferences currently switch between a few demo profiles and fall back to Chicago by default.
-- Waitlist capture remains a placeholder and does not submit anywhere.
+- Early-access capture posts to FormSubmit's AJAX endpoint for `hello@notafan.app`.
+- FormSubmit requires a one-time inbox activation on the first live submission before collection is fully active.
 - Audio playback depends on browser support for `speechSynthesis`.

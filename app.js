@@ -69,6 +69,10 @@ const locationAliases = {
 };
 
 const storageKey = "not-a-fan-location";
+const signupConfig = {
+  endpoint: "https://formsubmit.co/ajax/hello@notafan.app",
+  inbox: "hello@notafan.app"
+};
 let activeProfileKey = "default";
 
 function resolveProfile(input) {
@@ -95,6 +99,7 @@ function renderProfile(profileKey) {
   document.getElementById("hero-local-angle").textContent = profile.localAngle;
   document.getElementById("confidence-note").textContent = profile.confidenceNote;
   document.getElementById("best-room").textContent = profile.bestRoom;
+  document.getElementById("cta-location").value = profile.label;
   syncPresetButtons(profileKey);
 }
 
@@ -166,22 +171,61 @@ function applyLocation(rawValue) {
   showToast(`Local view set to ${profiles[profileKey].label}`);
 }
 
-function handleCtaSubmit(event) {
+async function handleCtaSubmit(event) {
   event.preventDefault();
+  const form = document.getElementById("cta-form");
   const input = document.getElementById("email");
+  const submitButton = document.getElementById("cta-submit");
+  const meta = document.getElementById("cta-meta");
   const email = input.value.trim();
 
+  input.value = email;
   if (!input.reportValidity()) {
     return;
   }
 
-  const subject = encodeURIComponent("Not a Fan early access");
-  const body = encodeURIComponent(
-    `Requesting early access for ${email}.\n\nSend me the daily line when spots open.`
-  );
+  submitButton.disabled = true;
+  submitButton.textContent = "Sending...";
 
-  window.location.href = `mailto:hello@notafan.app?subject=${subject}&body=${body}`;
-  showToast("Opening your email app");
+  const payload = {
+    email,
+    location: profiles[activeProfileKey].label,
+    source: "notafan.app early access",
+    _subject: "Not a Fan early access request",
+    _template: "table",
+    _captcha: "false"
+  };
+
+  try {
+    const response = await fetch(signupConfig.endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      const errorMessage = typeof result.message === "string" ? result.message : "Signup failed";
+      throw new Error(errorMessage);
+    }
+
+    form.reset();
+    document.getElementById("cta-location").value = profiles[activeProfileKey].label;
+    meta.textContent = `Request sent. If this is the first submission, ${signupConfig.inbox} still needs to confirm FormSubmit's activation email.`;
+    meta.classList.add("is-live");
+    showToast("Request sent");
+  } catch (error) {
+    meta.textContent = `Signup isn't fully armed yet. First fix: activate FormSubmit in ${signupConfig.inbox}. Then submissions work without mailto nonsense.`;
+    meta.classList.remove("is-live");
+    showToast(error.message || "Signup failed");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "Get early access";
+  }
 }
 
 function wireEvents() {

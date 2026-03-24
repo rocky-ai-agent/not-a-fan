@@ -138,12 +138,14 @@
           <p>
             One safe opener. One follow-up. One local angle. No box scores. No fake fandom required.
           </p>
-          <p class="cta-trust">Early-access requests go straight to the inbox. No newsletter clutter.</p>
+          <p class="cta-trust">Real signup, static site. Requests route through FormSubmit to hello@notafan.app.</p>
+          <p class="cta-meta" id="cta-meta">Takes one field now. First live submission triggers a one-time inbox activation for that address.</p>
         </div>
-        <form class="cta-form" id="cta-form">
+        <form class="cta-form" id="cta-form" novalidate>
           <label class="sr-only" for="email">Email</label>
-          <input id="email" type="email" placeholder="name@company.com" autocomplete="email" required />
-          <button class="primary-button" id="cta-submit" type="submit">Request early access</button>
+          <input id="email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />
+          <input id="cta-location" name="location" type="hidden" value="Chicago, IL" />
+          <button class="primary-button" id="cta-submit" type="submit">Get early access</button>
         </form>
       </section>
     </main>

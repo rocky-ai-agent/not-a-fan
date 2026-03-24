@@ -277,6 +277,15 @@ body::before {
   font-size: 0.92rem;
 }
 
+.cta-meta {
+  font-size: 0.84rem;
+  max-width: 32rem;
+}
+
+.cta-meta.is-live {
+  color: var(--accent-deep);
+}
+
 .hero-lede {
   max-width: 36rem;
   margin: 1rem 0 0;
@@ -456,6 +465,11 @@ a:focus-visible,
 .quick-pick:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.72;
 }
 
 .toast {
