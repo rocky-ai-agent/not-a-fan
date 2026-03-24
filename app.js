@@ -1085,9 +1085,13 @@ async function handleCtaSubmit(event) {
       throw new Error(errorMessage);
     }
 
-    form.reset();
-    document.getElementById("cta-location").value = `${sportProfiles[activeSportKey].label}${activeLocationLabel && activeLocationLabel !== cityProfiles.default.label ? ` | ${activeLocationLabel}` : ""}`;
-    showToast("You're in. First line lands tomorrow morning.");
+    const wrap = document.querySelector(".cta-form-wrap");
+    wrap.innerHTML = `
+      <div class="signup-success" role="status" aria-live="polite">
+        <p class="signup-success-heading">You're on the list.</p>
+        <p class="signup-success-body">We'll send new lines as the product grows. The safe line above is ready to use right now — no waiting.</p>
+      </div>
+    `;
   } catch (error) {
     showToast(error.message || "Something went wrong — try again.");
   } finally {
