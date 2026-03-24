@@ -322,21 +322,14 @@ body::before {
 }
 
 .selector-helper {
-  display: none;
   margin: 0;
-  color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.45;
-}
-
-.selector-helper.is-visible {
-  display: block;
-  animation: helper-in 160ms ease;
-}
-
-@keyframes helper-in {
-  from { opacity: 0; transform: translateY(-3px); }
-  to   { opacity: 1; transform: translateY(0); }
+  padding: 0.62rem 0.72rem;
+  border-radius: 14px;
+  background: rgba(255, 248, 240, 0.9);
+  color: var(--ink);
+  font-size: 0.83rem;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .sport-picks {
