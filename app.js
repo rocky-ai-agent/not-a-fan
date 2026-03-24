@@ -1,6 +1,6 @@
 const profiles = {
   default: {
-    label: "Chicago, IL",
+    label: "Broad default",
     heroLede:
       "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive office chat, client dinners, group texts, and the bar TV in about ten seconds.",
     heroProof: "Made for the exact moment somebody turns to you and says, “Did you catch the game?”",
@@ -12,6 +12,23 @@ const profiles = {
     safeContext:
       "Safe because it works whether the room means March Madness, a local team, or whatever game is on behind you.",
     followUp: "Who is still alive in your bracket?",
+    localAngle:
+      "Keep it broad, keep it believable, and let the real fan fill in the details.",
+    savedValue: ""
+  },
+  chicago: {
+    label: "Chicago, IL",
+    heroLede:
+      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so Chicago sports chatter does not become a conversation you have to fake your way through.",
+    heroProof: "Made for office kitchens, client dinners, and the second somebody decides the Bulls, Cubs, or Bears are now table conversation.",
+    confidenceNote:
+      "Short, believable lines still beat fake deep-cut opinions in Chicago.",
+    bestRoom: "Office kitchen, client small talk, or a bar TV conversation that needs one clean line.",
+    safeLine:
+      "Chicago sports people can pivot from cautious hope to full therapy session in about thirty seconds.",
+    safeContext:
+      "Safe because it sounds local without pretending you watched every minute last night.",
+    followUp: "So where is the real patience level right now, the Bears, the Bulls, or everybody?",
     localAngle:
       "Chicago is safer when you keep it broad: Bulls drift, Cubs hope, move on.",
     savedValue: "Chicago"
@@ -53,10 +70,10 @@ const profiles = {
 };
 
 const locationAliases = {
-  chicago: "default",
-  "60601": "default",
-  "60602": "default",
-  "60603": "default",
+  chicago: "chicago",
+  "60601": "chicago",
+  "60602": "chicago",
+  "60603": "chicago",
   "10001": "newyork",
   "10012": "newyork",
   nyc: "newyork",
@@ -87,14 +104,18 @@ function resolveProfileFromSaved(input) {
 function renderProfile(profileKey) {
   activeProfileKey = profileKey;
   const profile = profiles[profileKey];
+  const isDefault = profileKey === "default";
 
   document.getElementById("hero-lede").textContent = profile.heroLede;
   document.getElementById("hero-proof").textContent = profile.heroProof;
   document.getElementById("safe-line-text").textContent = `"${profile.safeLine}"`;
   document.getElementById("safe-line-context").textContent = profile.safeContext;
-  document.getElementById("location-pill").textContent = `Dialed to ${profile.label}`;
-  document.getElementById("location-saved").textContent = `Saved to ${profile.label}`;
-  document.getElementById("location-toggle-value").textContent = profile.label;
+  document.getElementById("location-pill").textContent = isDefault
+    ? "Default local angle: broad and safe"
+    : `Personalized for ${profile.label}`;
+  document.getElementById("location-saved").textContent = isDefault
+    ? "Currently using the broad default"
+    : `Currently tuned to ${profile.label}`;
   document.getElementById("hero-follow-up").textContent = profile.followUp;
   document.getElementById("hero-local-angle").textContent = profile.localAngle;
   document.getElementById("confidence-note").textContent = profile.confidenceNote;
@@ -144,14 +165,6 @@ function showToast(message) {
   }, 1800);
 }
 
-function setLocationPanelOpen(isOpen) {
-  const form = document.getElementById("location-form");
-  const toggle = document.getElementById("location-toggle");
-  form.classList.toggle("is-open", isOpen);
-  toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  toggle.querySelector(".location-toggle-action").textContent = isOpen ? "Close" : "Change";
-}
-
 function syncPresetButtons(profileKey) {
   document.querySelectorAll("[data-location-preset]").forEach((button) => {
     const matches = resolveProfile(button.getAttribute("data-location-preset")) === profileKey;
@@ -165,10 +178,19 @@ function applyLocation(rawValue) {
   const profileKey = resolveProfile(cleaned);
   const savedValue = cleaned || profiles[profileKey].savedValue;
   document.getElementById("location-input").value = savedValue;
-  window.localStorage.setItem(storageKey, savedValue);
+
+  if (cleaned) {
+    window.localStorage.setItem(storageKey, savedValue);
+  } else {
+    window.localStorage.removeItem(storageKey);
+  }
+
   renderProfile(profileKey);
-  setLocationPanelOpen(false);
-  showToast(`Local view set to ${profiles[profileKey].label}`);
+  showToast(
+    profileKey === "default"
+      ? "Using the broad default"
+      : `Local view set to ${profiles[profileKey].label}`
+  );
 }
 
 async function handleCtaSubmit(event) {
@@ -237,11 +259,6 @@ function wireEvents() {
     speakText(profiles[activeProfileKey].safeLine, "safe line");
   });
 
-  document.getElementById("location-toggle").addEventListener("click", () => {
-    const form = document.getElementById("location-form");
-    setLocationPanelOpen(!form.classList.contains("is-open"));
-  });
-
   document.getElementById("location-form").addEventListener("submit", (event) => {
     event.preventDefault();
     const input = document.getElementById("location-input");
@@ -265,9 +282,8 @@ function wireEvents() {
 function init() {
   const savedLocation = window.localStorage.getItem(storageKey);
   const profileKey = resolveProfileFromSaved(savedLocation);
-  document.getElementById("location-input").value = savedLocation || profiles[profileKey].savedValue;
+  document.getElementById("location-input").value = savedLocation || "";
   renderProfile(profileKey);
-  setLocationPanelOpen(false);
   wireEvents();
 }
 

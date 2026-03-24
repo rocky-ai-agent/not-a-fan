@@ -20,46 +20,6 @@
         <p class="eyebrow">Social survival for non-fans</p>
         <a href="#hero" class="brand">Not a Fan</a>
       </div>
-
-      <form class="location-control" id="location-form">
-        <button
-          class="location-toggle"
-          id="location-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="location-panel"
-        >
-          <span class="location-toggle-copy">
-            <span class="location-toggle-label">Local preference</span>
-            <span class="location-toggle-value" id="location-toggle-value">Chicago, IL</span>
-          </span>
-          <span class="location-toggle-action">Change</span>
-        </button>
-        <div class="location-panel" id="location-panel">
-          <div class="location-topline">
-            <label class="location-label" for="location-input">Local preference</label>
-            <p class="location-saved" id="location-saved">Saved to Chicago, IL</p>
-          </div>
-          <div class="location-field">
-            <input
-              id="location-input"
-              name="location"
-              type="text"
-              inputmode="text"
-              autocomplete="postal-code"
-              placeholder="Chicago or 60601"
-              aria-describedby="location-note"
-            />
-            <button type="submit">Set</button>
-          </div>
-          <div class="quick-picks" aria-label="Suggested city presets">
-            <button class="quick-pick" type="button" data-location-preset="Chicago">Chicago</button>
-            <button class="quick-pick" type="button" data-location-preset="New York">New York</button>
-            <button class="quick-pick" type="button" data-location-preset="Boston">Boston</button>
-          </div>
-          <p class="location-note" id="location-note">Changes the hometown angle so the line feels believable where you are.</p>
-        </div>
-      </form>
     </header>
 
     <main>
@@ -92,7 +52,7 @@
         <div class="safe-line-card" id="safe-line-card">
           <div class="safe-line-header">
             <p class="safe-line-label">Today's safe line</p>
-            <span class="status-pill" id="location-pill">Dialed to Chicago, IL</span>
+            <span class="status-pill" id="location-pill">Default local angle: broad and safe</span>
           </div>
           <p class="safe-line-coach">If sports comes up right now, use this almost exactly as written.</p>
           <blockquote id="safe-line-text">
@@ -108,7 +68,7 @@
             </div>
             <div class="sequence-step sequence-step-local">
               <span class="sequence-label">If they want local</span>
-              <p id="hero-local-angle">Chicago is your clean default if somebody wants a hometown read.</p>
+              <p id="hero-local-angle">Keep it broad, keep it believable, and let the real fan fill in the details.</p>
             </div>
           </div>
           <div class="safe-line-actions">
@@ -116,6 +76,38 @@
             <button class="ghost-button" id="play-safe-line" type="button">Hear it out loud</button>
           </div>
         </div>
+      </section>
+
+      <section class="personalize-panel" aria-labelledby="personalize-title">
+        <div class="personalize-copy">
+          <p class="eyebrow">Optional personalization</p>
+          <h2 id="personalize-title">Want the hometown angle to sound more like your city?</h2>
+          <p>Start with the default line. If you want a more local version, pick a city and the example updates instantly.</p>
+        </div>
+        <form class="location-control" id="location-form">
+          <div class="location-topline">
+            <label class="location-label" for="location-input">City</label>
+            <p class="location-saved" id="location-saved">Currently using the broad default</p>
+          </div>
+          <div class="location-field">
+            <input
+              id="location-input"
+              name="location"
+              type="text"
+              inputmode="text"
+              autocomplete="address-level2"
+              placeholder="Chicago, New York, Boston"
+              aria-describedby="location-note"
+            />
+            <button type="submit">Update city</button>
+          </div>
+          <div class="quick-picks" aria-label="Suggested city presets">
+            <button class="quick-pick" type="button" data-location-preset="Chicago">Chicago</button>
+            <button class="quick-pick" type="button" data-location-preset="New York">New York</button>
+            <button class="quick-pick" type="button" data-location-preset="Boston">Boston</button>
+          </div>
+          <p class="location-note" id="location-note">Human city names only. No ZIP-code homework.</p>
+        </form>
       </section>
 
       <section class="mini-proof" aria-label="Why this product exists">
@@ -145,7 +137,7 @@
           <form class="cta-form" id="cta-form" novalidate>
             <label class="sr-only" for="email">Email</label>
             <input id="email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />
-            <input id="cta-location" name="location" type="hidden" value="Chicago, IL" />
+            <input id="cta-location" name="location" type="hidden" value="Broad default" />
             <button class="primary-button" id="cta-submit" type="submit">Get early access</button>
           </form>
         </div>
