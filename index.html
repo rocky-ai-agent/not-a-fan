@@ -35,9 +35,10 @@
           </div>
           <div class="sport-selector" aria-labelledby="sport-selector-title">
             <div class="sport-selector-topline">
-              <p class="selector-label" id="sport-selector-title">Start with the sport</p>
-              <p class="selector-note">This changes the actual line, follow-up, and example state.</p>
+              <p class="selector-label" id="sport-selector-title">Pick the sport first</p>
+              <p class="selector-note">This is the main control. City only refines the local angle after.</p>
             </div>
+            <p class="selector-helper" id="selector-helper">Start with College hoops. It is the safest default right now for random office and group-chat sports talk.</p>
             <div class="sport-picks" role="group" aria-label="Quick sport presets">
               <button class="sport-pick is-active" type="button" data-sport-preset="college" aria-pressed="true">College hoops</button>
               <button class="sport-pick" type="button" data-sport-preset="nba" aria-pressed="false">NBA</button>
@@ -93,13 +94,13 @@
 
       <section class="personalize-panel" aria-labelledby="personalize-title">
         <div class="personalize-copy">
-          <p class="eyebrow">Optional personalization</p>
-          <h2 id="personalize-title">Want the hometown angle to sound more like your city?</h2>
-          <p id="personalize-description">Start with the default line. If you want a more local version, enter a common sports market and the example updates instantly. If we do not cover your city yet, we fall back on purpose instead of bluffing.</p>
+          <p class="eyebrow">Optional city refinement</p>
+          <h2 id="personalize-title">Want the local angle to sound a little more like your city?</h2>
+          <p id="personalize-description">Start with the sport-specific line above. Add a city only if you want the hometown version to feel sharper. If we do not cover your city yet, we fall back on purpose instead of bluffing.</p>
         </div>
         <form class="location-control" id="location-form">
           <div class="location-topline">
-            <label class="location-label" for="location-input">City</label>
+            <label class="location-label" for="location-input">Optional city</label>
             <p class="location-saved" id="location-saved">Currently using the broad default</p>
           </div>
           <div class="location-field">
@@ -114,7 +115,7 @@
               list="location-suggestions"
             />
             <datalist id="location-suggestions"></datalist>
-            <button type="submit">Update city</button>
+            <button type="submit">Refine city</button>
           </div>
           <div class="quick-picks" aria-label="Suggested city presets">
             <button class="quick-pick" type="button" data-location-preset="Chicago">Chicago</button>

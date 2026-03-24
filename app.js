@@ -8,6 +8,8 @@ const sportProfiles = {
       "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive bracket talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
     heroProof:
       "Made for the exact moment somebody turns to you and says, \"Did your bracket get smoked too?\"",
+    selectorHelper:
+      "Start with College hoops. It is the safest default right now for random office and group-chat sports talk.",
     confidenceNote:
       "In tournament season, broad bracket pain sounds smarter than fake matchup analysis.",
     bestRoom: "Office chat, group text, or any room hijacked by bracket talk.",
@@ -34,6 +36,8 @@ const sportProfiles = {
       "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive NBA talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
     heroProof:
       "Made for the exact moment somebody turns to you and says, \"You buying this team in the playoffs or not?\"",
+    selectorHelper:
+      "Choose NBA when the room is clearly on playoff pressure, stars, or who looks built for a long series.",
     confidenceNote:
       "For NBA talk, one clean opinion about pressure or depth beats fake film-study nonsense.",
     bestRoom: "Office kitchen, client dinner, or bar-TV playoff conversation.",
@@ -60,6 +64,8 @@ const sportProfiles = {
       "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive baseball talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
     heroProof:
       "Made for the exact moment somebody turns to you and says, \"It's early, but are you buying this team?\"",
+    selectorHelper:
+      "Choose MLB when the conversation is about long seasons, hot starts, rebuilds, or whether anyone trusts this by October.",
     confidenceNote:
       "For baseball talk, patience and expectations sound more believable than pretending you know the full bullpen.",
     bestRoom: "Office chat, patio drinks, or background-TV baseball talk.",
@@ -86,6 +92,8 @@ const sportProfiles = {
       "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive football talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
     heroProof:
       "Made for the exact moment somebody turns to you and says, \"So are you buying the hype this year?\"",
+    selectorHelper:
+      "Choose NFL when the room is running on hype, schedule talk, quarterback trust issues, or general season optimism.",
     confidenceNote:
       "For football chatter, expectations and skepticism land better than pretending you studied every snap.",
     bestRoom: "Office kitchen, client lunch, or sports-bar TV conversation.",
@@ -112,6 +120,8 @@ const sportProfiles = {
       "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive hockey talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
     heroProof:
       "Made for the exact moment somebody turns to you and says, \"So is this team actually built for a playoff run?\"",
+    selectorHelper:
+      "Choose NHL when the room is talking playoff grind, depth, hot goalies, or whether a team actually looks sturdy.",
     confidenceNote:
       "For hockey talk, effort, depth, and playoff nerves sound smarter than bluffing line combinations.",
     bestRoom: "Office chat, arena-adjacent bar talk, or background-TV playoff conversation.",
@@ -890,6 +900,7 @@ function getCombinedProfile(sportKey, cityKey) {
   return {
     heroLede: sport.heroLede,
     heroProof: citySport ? `${sport.heroProof} In ${city.label}, the local version is: "${citySport.line}"` : sport.heroProof,
+    selectorHelper: sport.selectorHelper,
     confidenceNote: sport.confidenceNote,
     bestRoom: sport.bestRoom,
     safeLine: citySport?.line || sport.safeLine,
@@ -929,6 +940,7 @@ function renderState(options = {}) {
 
   document.getElementById("hero-lede").textContent = profile.heroLede;
   document.getElementById("hero-proof").textContent = profile.heroProof;
+  document.getElementById("selector-helper").textContent = profile.selectorHelper;
   document.getElementById("situation-copy").textContent = sport.situation;
   document.getElementById("safe-line-text").textContent = `"${profile.safeLine}"`;
   document.getElementById("safe-line-context").textContent = isFallback
@@ -938,9 +950,9 @@ function renderState(options = {}) {
     ? `${sport.shortLabel} • broad city fallback for ${fallbackCity}`
     : profile.pill;
   document.getElementById("location-saved").textContent = isFallback
-    ? `${fallbackCity} saved. Using the broad city fallback on purpose.`
+    ? `${fallbackCity} saved. Sport stays primary, so we are using the broad city fallback on purpose.`
     : isDefaultCity
-      ? `${profile.cityPrompt} Currently using the broad default.`
+      ? `${profile.cityPrompt} Still on the broad default.`
       : `City refinement on: ${cityProfiles[activeCityKey].label}`;
   document.getElementById("hero-follow-up").textContent = profile.followUp;
   document.getElementById("hero-local-angle").textContent = isFallback
