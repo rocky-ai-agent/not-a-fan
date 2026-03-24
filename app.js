@@ -2,8 +2,8 @@ const profiles = {
   default: {
     label: "Chicago, IL",
     heroLede:
-      "Not a Fan gives you a safe opener, a short follow-up, and a local angle so you can get through office chat, group texts, and the bar TV in about ten seconds.",
-    heroProof: "Built for the moment right before someone says, “Did you see that game?”",
+      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+    heroProof: "Made for the exact moment somebody turns to you and says, “Did you catch the game?”",
     confidenceNote:
       "Short, believable lines land better than fake expert takes.",
     bestRoom: "Mixed office chat, group text, or background-TV bar talk.",
@@ -13,14 +13,14 @@ const profiles = {
       "Safe because it works whether the room means March Madness, a local team, or whatever game is on behind you.",
     followUp: "Who is still alive in your bracket?",
     localAngle:
-      "Chicago is your clean default if somebody wants a hometown read. Bulls drift, Cubs hope, move on.",
+      "Chicago is safer when you keep it broad: Bulls drift, Cubs hope, move on.",
     savedValue: "Chicago"
   },
   newyork: {
     label: "New York, NY",
     heroLede:
-      "Not a Fan gives you a safe opener, a short follow-up, and a local angle so New York sports chatter does not turn into a test you forgot to study for.",
-    heroProof: "Built for office kitchens, client small talk, and the second somebody decides to ask about the Knicks or Yankees.",
+      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so New York sports chatter does not turn into a test you forgot to study for.",
+    heroProof: "Made for office kitchens, client small talk, and the second somebody decides to ask about the Knicks or Yankees.",
     confidenceNote:
       "Broad emotional reads sound more believable in New York than pretending you watched four full games this week.",
     bestRoom: "Office kitchen, group chat, or pre-dinner sports-on-TV conversation.",
@@ -36,8 +36,8 @@ const profiles = {
   boston: {
     label: "Boston, MA",
     heroLede:
-      "Not a Fan gives you a safe opener, a short follow-up, and a local angle so Boston sports talk feels survivable instead of like a quiz with consequences.",
-    heroProof: "Built for team lunches, post-work drinks, and any room where someone is one sentence away from explaining a playoff path.",
+      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so Boston sports talk feels survivable instead of like a quiz with consequences.",
+    heroProof: "Made for team lunches, post-work drinks, and any room where someone is one sentence away from explaining a playoff path.",
     confidenceNote:
       "In Boston, short reactions sound smarter than fake certainty.",
     bestRoom: "Team lunch, bar TV conversation, or a group chat after work.",
@@ -166,6 +166,24 @@ function applyLocation(rawValue) {
   showToast(`Local view set to ${profiles[profileKey].label}`);
 }
 
+function handleCtaSubmit(event) {
+  event.preventDefault();
+  const input = document.getElementById("email");
+  const email = input.value.trim();
+
+  if (!input.reportValidity()) {
+    return;
+  }
+
+  const subject = encodeURIComponent("Not a Fan early access");
+  const body = encodeURIComponent(
+    `Requesting early access for ${email}.\n\nSend me the daily line when spots open.`
+  );
+
+  window.location.href = `mailto:hello@notafan.app?subject=${subject}&body=${body}`;
+  showToast("Opening your email app");
+}
+
 function wireEvents() {
   document.getElementById("copy-safe-line").addEventListener("click", () => {
     copyText(profiles[activeProfileKey].safeLine, "Safe line copied");
@@ -197,9 +215,7 @@ function wireEvents() {
     applyLocation(value);
   });
 
-  document.querySelector(".cta-form button").addEventListener("click", () => {
-    showToast("Waitlist capture is still a demo");
-  });
+  document.getElementById("cta-form").addEventListener("submit", handleCtaSubmit);
 }
 
 function init() {

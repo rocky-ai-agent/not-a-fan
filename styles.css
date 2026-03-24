@@ -273,6 +273,10 @@ body::before {
   line-height: 1.55;
 }
 
+.cta-trust {
+  font-size: 0.92rem;
+}
+
 .hero-lede {
   max-width: 36rem;
   margin: 1rem 0 0;
