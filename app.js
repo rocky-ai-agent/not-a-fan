@@ -370,7 +370,7 @@ const cityProfiles = {
       college: {
         line: "Houston bracket talk gets real fast because somebody will absolutely treat the Cougars like a civic responsibility.",
         followUp: "Does Houston feel like a real title-town in college hoops right now or just very loud about it?",
-        angle: "Houston college hoops is safer when you stay on expectations and pressure.",
+        angle: "In Houston college hoops talk, stay on pressure, expectations, and how quickly the whole room starts sounding invested.",
         context: "Safe because it sounds local without making you fake deep matchup takes."
       },
       nba: {
@@ -382,7 +382,7 @@ const cityProfiles = {
       mlb: {
         line: "Houston baseball talk can sound casual even when Astros expectations are doing all the talking underneath.",
         followUp: "What feels more real right now, Astros standards or Astros fatigue?",
-        angle: "Houston baseball works when you stay on expectations and confidence.",
+        angle: "In Houston baseball talk, stay on standards, confidence, and whether the Astros still feel like the default serious team in the room.",
         context: "Safe because the Astros give you a believable local lane immediately."
       },
       nfl: {
@@ -478,7 +478,7 @@ const cityProfiles = {
       college: {
         line: "Twin Cities bracket talk always carries a little hope and a little emotional weather preparedness.",
         followUp: "So is this a trust-the-bracket year or a brace-for-impact year?",
-        angle: "Minnesota college hoops is safer when you stay on emotional temperature, not fake deep takes.",
+        angle: "In Twin Cities college hoops talk, stay on emotional temperature, bracket nerves, and whether anybody really trusts a calm March.",
         context: "Safe because it sounds local without overcommitting."
       },
       nba: {
@@ -490,7 +490,7 @@ const cityProfiles = {
       mlb: {
         line: "Minnesota baseball talk usually lands somewhere between Twins competence and weather-related realism.",
         followUp: "Does this Twins group actually feel sturdy enough to trust?",
-        angle: "Minnesota baseball works when you stay on trust and steadiness.",
+        angle: "In Minnesota baseball talk, stay on steadiness, trust, and whether the Twins feel solid enough to believe without getting cute.",
         context: "Safe because it sounds like a local read without bluffing specifics."
       },
       nfl: {
@@ -622,7 +622,7 @@ const cityProfiles = {
       college: {
         line: "Bay Area bracket talk can sound like a systems review with bonus complaints about the selection committee.",
         followUp: "So is this a trust-the-models year or a chaos year pretending to be data-driven?",
-        angle: "Bay Area college hoops is safer when you keep it on confidence and bracket logic theater.",
+        angle: "In Bay Area college hoops talk, stay on bracket logic theater, confidence, and who suddenly sounds like they brought a model to lunch.",
         context: "Safe because it sounds local without requiring actual spreadsheet receipts."
       },
       nba: {
@@ -640,7 +640,7 @@ const cityProfiles = {
       nfl: {
         line: "Bay Area football talk usually mixes 49ers confidence with the kind of overanalysis that sounds expensive.",
         followUp: "Do 49ers people still feel like the standard there or just the most exhausting contender?",
-        angle: "Bay Area football is safer when you stay on expectation tax and trust.",
+        angle: "In Bay Area football talk, stay on expectation tax, trust, and whether the 49ers still feel inevitable or just draining.",
         context: "Safe because it feels local without fake film breakdowns."
       },
       nhl: {
@@ -670,13 +670,13 @@ const cityProfiles = {
       mlb: {
         line: "Seattle baseball talk has perfected sounding hopeful and guarded at the exact same time.",
         followUp: "What feels more real right now, Mariners optimism or Mariners trust issues?",
-        angle: "Seattle baseball is safest when you keep it light and let the real fan decide how deep to go.",
+        angle: "In Seattle baseball talk, stay on optimism, trust issues, and whether this version feels safe to believe in yet.",
         context: "Safe because it acknowledges the city's emotional pattern without pretending expertise."
       },
       nfl: {
         line: "Seattle football talk sounds calm until Seahawks expectations show up and then the optimism and dread start sharing a chair.",
         followUp: "Do Seahawks people actually feel patient right now or just temporarily composed?",
-        angle: "Seattle football works when you stay on patience and trust, not specifics.",
+        angle: "In Seattle football talk, stay on patience, trust, and how fast composed can turn into loud again.",
         context: "Safe because it feels local without pretending you tracked every snap."
       },
       nhl: {
@@ -748,7 +748,7 @@ const cityProfiles = {
       nfl: {
         line: "DC football talk usually sounds professional right up until the Commanders come up and then somebody gets personal.",
         followUp: "What actually feels more stable right now, Commanders optimism or the city's ability to trust it?",
-        angle: "DC football is safer when you keep it on belief versus skepticism and avoid fake roster knowledge.",
+        angle: "In DC football talk, stay on belief versus skepticism, trust, and how fast polite analysis turns into a real opinion.",
         context: "Safe because it feels local without making you sound like a try-hard."
       },
       nhl: {
@@ -899,7 +899,7 @@ function getCombinedProfile(sportKey, cityKey) {
 
   return {
     heroLede: sport.heroLede,
-    heroProof: citySport ? `${sport.heroProof} In ${city.label}, the local version is: "${citySport.line}"` : sport.heroProof,
+    heroProof: citySport ? `${sport.heroProof} ${city.label} angle: ${citySport.line}` : sport.heroProof,
     selectorHelper: sport.selectorHelper,
     confidenceNote: sport.confidenceNote,
     bestRoom: sport.bestRoom,
