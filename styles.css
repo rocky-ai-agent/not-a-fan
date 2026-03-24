@@ -80,7 +80,8 @@ body::before {
 .location-note,
 .location-saved,
 .safe-line-label,
-.sequence-label {
+.sequence-label,
+.selector-label {
   margin: 0;
   font-size: 0.72rem;
   font-weight: 700;
@@ -287,6 +288,53 @@ body::before {
   border-left: 4px solid var(--accent);
   border-radius: 16px;
   background: rgba(255, 248, 240, 0.68);
+}
+
+.sport-selector {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(82, 54, 28, 0.1);
+}
+
+.sport-selector-topline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.selector-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.sport-picks {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.sport-pick {
+  padding: 0.55rem 0.78rem;
+  border-radius: 999px;
+  border: 1px solid rgba(72, 53, 34, 0.12);
+  background: rgba(255, 255, 255, 0.84);
+  color: rgba(23, 19, 16, 0.9);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sport-pick.is-active {
+  color: #fff8f4;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-deep) 100%);
 }
 
 .hero-proof p,
@@ -617,7 +665,8 @@ button:disabled {
   .hero-actions,
   .safe-line-actions,
   .cta-form,
-  .location-field {
+  .location-field,
+  .sport-selector-topline {
     flex-direction: column;
   }
 
@@ -647,6 +696,7 @@ button:disabled {
     gap: 0.2rem;
   }
 
+  .sport-pick,
   .quick-pick {
     flex: 1 1 calc(50% - 0.45rem);
     text-align: center;

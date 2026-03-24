@@ -1,243 +1,753 @@
-const profileLibrary = {
-  default: {
-    label: "Broad default",
+const sportProfiles = {
+  college: {
+    key: "college",
+    label: "College hoops",
+    shortLabel: "College hoops",
+    pill: "College hoops mode",
     heroLede:
-      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive office chat, client dinners, group texts, and the bar TV in about ten seconds.",
-    heroProof: "Made for the exact moment somebody turns to you and says, “Did you catch the game?”",
+      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive bracket talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+    heroProof:
+      "Made for the exact moment somebody turns to you and says, \"Did your bracket get smoked too?\"",
     confidenceNote:
-      "Short, believable lines land better than fake expert takes.",
-    bestRoom: "Mixed office chat, group text, or background-TV bar talk.",
+      "In tournament season, broad bracket pain sounds smarter than fake matchup analysis.",
+    bestRoom: "Office chat, group text, or any room hijacked by bracket talk.",
     safeLine:
       "This time of year I just ask who ruined everyone's bracket and go from there.",
     safeContext:
-      "Safe because it works whether the room means March Madness, a local team, or whatever game is on behind you.",
+      "Safe because it works with March Madness chatter whether the other person watched every game or none of them.",
     followUp: "Who is still alive in your bracket?",
     localAngle:
       "Keep it broad, keep it believable, and let the real fan fill in the details.",
-    savedValue: "",
-    fallbackHint: "Currently using the broad default",
+    situation: "Office kitchens, awkward client chat, and group texts that suddenly turn into bracket talk.",
+    personalizeTitle: "Want the hometown angle to sound more like your city?",
+    personalizeDescription:
+      "Start with the default line. If you want a more local version, enter a common sports market and the example updates instantly. If we do not cover your city yet, we fall back on purpose instead of bluffing.",
+    cityPrompt: "Pick a city if you want the local flavor layered on.",
     note: "Human city names only. We cover the major sports markets and use a deliberate broad fallback for everything else."
+  },
+  nba: {
+    key: "nba",
+    label: "NBA",
+    shortLabel: "NBA",
+    pill: "NBA mode",
+    heroLede:
+      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive NBA talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+    heroProof:
+      "Made for the exact moment somebody turns to you and says, \"You buying this team in the playoffs or not?\"",
+    confidenceNote:
+      "For NBA talk, one clean opinion about pressure or depth beats fake film-study nonsense.",
+    bestRoom: "Office kitchen, client dinner, or bar-TV playoff conversation.",
+    safeLine:
+      "In the NBA I just say every contender looks great right up until somebody has to get four clean wins in a row.",
+    safeContext:
+      "Safe because it sounds like you understand playoff pressure without pretending you tracked every game.",
+    followUp: "Which team actually feels built for a long series instead of one hot week?",
+    localAngle:
+      "If they want specifics, stay on pressure, depth, or closing time and let the real fan handle the roster talk.",
+    situation: "Office kitchens, client dinners, and group texts that suddenly turn into playoff talk.",
+    personalizeTitle: "Want to layer in a local NBA market angle?",
+    personalizeDescription:
+      "Use the NBA line first. If you want it to sound more hometown-specific, enter a common sports market and the example sharpens without turning into fake expert talk.",
+    cityPrompt: "City is optional. Sport does the heavy lifting.",
+    note: "Human city names only. Major markets only. We keep the fallback broad instead of bluffing."
+  },
+  mlb: {
+    key: "mlb",
+    label: "MLB",
+    shortLabel: "MLB",
+    pill: "MLB mode",
+    heroLede:
+      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive baseball talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+    heroProof:
+      "Made for the exact moment somebody turns to you and says, \"It's early, but are you buying this team?\"",
+    confidenceNote:
+      "For baseball talk, patience and expectations sound more believable than pretending you know the full bullpen.",
+    bestRoom: "Office chat, patio drinks, or background-TV baseball talk.",
+    safeLine:
+      "With baseball I just say the season is long and every fan base is either talking itself into October or into a rebuild by May.",
+    safeContext:
+      "Safe because it fits almost any MLB conversation without forcing you into player-specific trivia.",
+    followUp: "Does this actually feel sustainable or is it just early-season optimism?",
+    localAngle:
+      "If they want specifics, stay on expectations, depth, or whether the team feels serious yet.",
+    situation: "Office chat, patio drinks, and background-TV baseball conversation.",
+    personalizeTitle: "Want the baseball angle to sound more local?",
+    personalizeDescription:
+      "Start with the MLB line. Then add a city only if you want the hometown version to feel sharper and more believable.",
+    cityPrompt: "Optional city refinement for baseball markets.",
+    note: "Human city names only. Major markets only. We use a broad fallback on purpose."
+  },
+  nfl: {
+    key: "nfl",
+    label: "NFL",
+    shortLabel: "NFL",
+    pill: "NFL mode",
+    heroLede:
+      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive football talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+    heroProof:
+      "Made for the exact moment somebody turns to you and says, \"So are you buying the hype this year?\"",
+    confidenceNote:
+      "For football chatter, expectations and skepticism land better than pretending you studied every snap.",
+    bestRoom: "Office kitchen, client lunch, or sports-bar TV conversation.",
+    safeLine:
+      "With football I usually say every fan base talks itself into the season until the schedule starts cashing the checks.",
+    safeContext:
+      "Safe because it works in NFL conversations almost anywhere without making you fake film-room confidence.",
+    followUp: "Who actually feels real once the optimism tax wears off?",
+    localAngle:
+      "If they want specifics, stay on hype versus trust and let the real fan take over from there.",
+    situation: "Office kitchens, client lunches, and group texts that suddenly become quarterback talk.",
+    personalizeTitle: "Want the football angle to sound more like your city?",
+    personalizeDescription:
+      "Use the NFL line first. Add a city only if you want the local version underneath. Same idea, less generic.",
+    cityPrompt: "Optional city refinement for football-heavy markets.",
+    note: "Human city names only. Major markets only. Broad fallback if we do not cover it."
+  },
+  nhl: {
+    key: "nhl",
+    label: "NHL",
+    shortLabel: "NHL",
+    pill: "NHL mode",
+    heroLede:
+      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive hockey talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+    heroProof:
+      "Made for the exact moment somebody turns to you and says, \"So is this team actually built for a playoff run?\"",
+    confidenceNote:
+      "For hockey talk, effort, depth, and playoff nerves sound smarter than bluffing line combinations.",
+    bestRoom: "Office chat, arena-adjacent bar talk, or background-TV playoff conversation.",
+    safeLine:
+      "With hockey I just say every playoff team looks solid until one cold stretch turns the whole city dramatic.",
+    safeContext:
+      "Safe because it sounds normal in NHL talk without requiring you to fake deep hockey knowledge.",
+    followUp: "Which team actually looks built to handle a long playoff grind?",
+    localAngle:
+      "If they want specifics, keep it on depth, goaltending nerves, or playoff wear-and-tear.",
+    situation: "Office chat, playoff bar talk, and group texts that suddenly care about overtime hockey.",
+    personalizeTitle: "Want the hockey version to sound more local?",
+    personalizeDescription:
+      "Start with the NHL line. Then add a city if you want the local market mood layered underneath.",
+    cityPrompt: "Optional city refinement for hockey markets.",
+    note: "Human city names only. Major markets only. Broad fallback if the city is outside coverage."
+  }
+};
+
+const cityProfiles = {
+  default: {
+    label: "Broad default",
+    savedValue: "",
+    fallbackHint: "Currently using the broad default"
   },
   atlanta: {
     label: "Atlanta, GA",
-    teams: "the Braves, Falcons, or Hawks",
-    vibe: "Atlanta sports chat has confidence, caution, and one fan ready to say this year feels different.",
-    proof: "Made for office kitchens, airport bars, and the second somebody brings up the Braves or asks if the Falcons finally feel stable.",
-    confidence: "In Atlanta, broad momentum reads beat pretending you tracked every inning or snap.",
-    room: "Office chat, client dinner, or sports-on-TV small talk before the real fan takes over.",
-    line: "Atlanta sports people always sound one good week away from believing everything is finally lining up.",
-    context: "Safe because it sounds local without forcing you to fake specifics.",
-    followUp: "So what has more real optimism right now, the Braves or the version of the Falcons people want to believe in?",
-    angle: "Atlanta is easier if you keep it on expectations, not stat sheets.",
-    savedValue: "Atlanta"
+    savedValue: "Atlanta",
+    sportLines: {
+      college: {
+        line: "Atlanta bracket talk gets louder the second somebody decides the SEC was either underrated or fake all along.",
+        followUp: "So who has Atlanta people feeling smarter right now, the bracket chalk crowd or the chaos believers?",
+        angle: "In Atlanta, college hoops is safer when you keep it on conference pride and bracket survival.",
+        context: "Safe because it sounds local without pretending you watched every game."
+      },
+      nba: {
+        line: "Atlanta NBA talk always sounds like the Hawks are one real run away from changing the whole mood in the city.",
+        followUp: "Do Hawks people feel real momentum right now or just another teasing stretch?",
+        angle: "Atlanta NBA talk is safer when you keep it on momentum and expectations, not fake rotation analysis.",
+        context: "Safe because it feels local without trapping you in roster specifics."
+      },
+      mlb: {
+        line: "Atlanta baseball talk usually starts with the Braves acting like the standard and everybody else trying to catch up.",
+        followUp: "Does this Braves version feel dangerous again or just solid enough to keep expectations high?",
+        angle: "Atlanta baseball is easiest when you stay on standards, not stat sheets.",
+        context: "Safe because the Braves are the obvious gravity well without you needing deep details."
+      },
+      nfl: {
+        line: "Atlanta football talk always has one person ready to say this Falcons season feels different and one person refusing to trust it.",
+        followUp: "So is Falcons optimism actually real this time or still mostly a coping mechanism?",
+        angle: "Atlanta football works when you stay on belief versus caution and let the real fan rant.",
+        context: "Safe because it sounds like you understand the city's rhythm without bluffing specifics."
+      },
+      nhl: {
+        line: "Atlanta hockey talk is mostly a test of whether the room wants to joke about not having a team or get weirdly nostalgic.",
+        followUp: "Does Atlanta even want hockey back badly enough to turn it into real conversation?",
+        angle: "Atlanta plus hockey is safer if you keep it light and self-aware.",
+        context: "Safe because it acknowledges the market reality instead of pretending there is a live NHL beat there."
+      }
+    }
   },
   boston: {
     label: "Boston, MA",
-    teams: "the Celtics, Bruins, Patriots, or Red Sox",
-    vibe: "Boston sports talk feels survivable instead of like a quiz with consequences.",
-    proof: "Made for team lunches, post-work drinks, and any room where someone is one sentence away from explaining a playoff path.",
-    confidence: "In Boston, short reactions sound smarter than fake certainty.",
-    room: "Team lunch, bar TV conversation, or a group chat after work.",
-    line: "Boston sports people always sound calm right before they start explaining a playoff path in alarming detail.",
-    context: "Safe because it flatters local seriousness without making you prove expertise.",
-    followUp: "Does this actually feel like a real contender year or just regular-season confidence?",
-    angle: "Boston is safer when you respect the stakes, say less, and let the real fan fill the silence.",
-    savedValue: "Boston"
+    savedValue: "Boston",
+    sportLines: {
+      college: {
+        line: "In Boston, bracket talk somehow turns into a referendum on whether you respect basketball seriousness quickly enough.",
+        followUp: "So is this a trust-the-bluebloods year or a chaos year?",
+        angle: "Boston college hoops talk is safer when you sound calm and let someone else get intense.",
+        context: "Safe because it flatters the room's seriousness without making you prove expertise."
+      },
+      nba: {
+        line: "Boston NBA talk is calm right up until somebody starts mapping the Celtics playoff path like a military exercise.",
+        followUp: "Does this Celtics group actually feel title-clean or just good enough to raise stress levels?",
+        angle: "Boston NBA is safer when you respect the stakes and say less.",
+        context: "Safe because it sounds local without forcing you into film-room cosplay."
+      },
+      mlb: {
+        line: "Boston baseball talk always sounds like Red Sox expectations are either completely back or one week from collapse.",
+        followUp: "Does this feel like a real Red Sox year or just the city talking itself into one?",
+        angle: "Boston baseball is safer when you stay on expectations and history, not specifics.",
+        context: "Safe because local mood does most of the work."
+      },
+      nfl: {
+        line: "Boston football talk still carries the Patriots standard even when everybody knows the room changed years ago.",
+        followUp: "What actually feels more real right now, Patriots patience or Patriots delusion?",
+        angle: "Boston football works when you acknowledge the old standard and the current reality without overdoing either.",
+        context: "Safe because it sounds like you know the market's emotional baseline."
+      },
+      nhl: {
+        line: "Boston hockey talk gets serious fast because Bruins expectations are treated like civic business.",
+        followUp: "Do Bruins people actually trust this group in a playoff series?",
+        angle: "Boston hockey is safer when you stay on trust, depth, and playoff nerves.",
+        context: "Safe because it respects how seriously the city takes hockey without bluffing specifics."
+      }
+    }
   },
   chicago: {
     label: "Chicago, IL",
-    teams: "the Bears, Bulls, Cubs, or Blackhawks",
-    vibe: "Chicago sports chatter does not become a conversation you have to fake your way through.",
-    proof: "Made for office kitchens, client dinners, and the second somebody decides the Bulls, Cubs, or Bears are now table conversation.",
-    confidence: "Short, believable lines still beat fake deep-cut opinions in Chicago.",
-    room: "Office kitchen, client small talk, or a bar TV conversation that needs one clean line.",
-    line: "Chicago sports people can pivot from cautious hope to full therapy session in about thirty seconds.",
-    context: "Safe because it sounds local without pretending you watched every minute last night.",
-    followUp: "So where is the real patience level right now, the Bears, the Bulls, or everybody?",
-    angle: "Chicago is safer when you keep it broad: Bulls drift, Cubs hope, move on.",
-    savedValue: "Chicago"
+    savedValue: "Chicago",
+    sportLines: {
+      college: {
+        line: "Chicago bracket talk usually turns into a loud argument between Big Ten faith and Big Ten disappointment.",
+        followUp: "So is this a trust-the-Big-Ten year or another year of emotional fraud?",
+        angle: "Chicago college hoops is safer when you keep it on bracket pain and conference trust issues.",
+        context: "Safe because it sounds familiar without making you fake game-by-game knowledge."
+      },
+      nba: {
+        line: "Chicago NBA talk can turn from mild Bulls hope to group therapy in about thirty seconds.",
+        followUp: "What is lower right now, Bulls patience or Bulls expectations?",
+        angle: "Chicago NBA is safer when you keep it broad: talent questions, patience questions, move on.",
+        context: "Safe because it sounds local without claiming you watched every possession."
+      },
+      mlb: {
+        line: "Chicago baseball talk is easy because Cubs optimism and White Sox damage are rarely far apart.",
+        followUp: "Which side of town feels more emotionally functional right now?",
+        angle: "Chicago baseball works when you stay on mood, not detailed roster talk.",
+        context: "Safe because the city split gives you a believable lane without trivia."
+      },
+      nfl: {
+        line: "Chicago football talk is usually one part quarterback hope and two parts Bears trust issues.",
+        followUp: "Do Bears people actually feel better or just temporarily distracted by optimism?",
+        angle: "Chicago football is safer when you keep it on hope versus trauma and let the real fan fill in the rest.",
+        context: "Safe because it sounds like you know the city's tone without pretending to study tape."
+      },
+      nhl: {
+        line: "Chicago hockey talk still carries Blackhawks residue even when the room knows the glory years are not the current assignment.",
+        followUp: "Does anybody in Chicago actually think the Blackhawks are on a serious clock yet?",
+        angle: "Chicago hockey is safer when you stay on expectations and timeline, not specifics.",
+        context: "Safe because it acknowledges the market without overselling your knowledge."
+      }
+    }
   },
   dallas: {
     label: "Dallas-Fort Worth, TX",
-    teams: "the Cowboys, Mavericks, Rangers, or Stars",
-    vibe: "Dallas sports talk has equal parts swagger, stress, and one loud opinion about the Cowboys.",
-    proof: "Made for office chat, client lunches, and any room where somebody acts like the Cowboys are always the center of the sports universe.",
-    confidence: "In Dallas, emotional truth sounds more believable than fake detail.",
-    room: "Office kitchen, business dinner, or bar TV small talk.",
-    line: "In Dallas somebody can bring up the Cowboys in April and act like it is still the main event.",
-    context: "Safe because it sounds like you understand the market without claiming homework.",
-    followUp: "What has people more skeptical right now, the Cowboys hype cycle or everything else?",
-    angle: "Dallas works when you acknowledge the Cowboys gravity and then leave room for the real fan to rant.",
-    savedValue: "Dallas"
+    savedValue: "Dallas",
+    sportLines: {
+      college: {
+        line: "Dallas bracket talk somehow finds a way to sound like football people trying to solve basketball with confidence.",
+        followUp: "So is this a chalk year or a year where everybody is pretending they saw the chaos coming?",
+        angle: "Dallas college hoops is safer when you keep it on bracket confidence, not deep basketball takes.",
+        context: "Safe because it sounds plausible without making you fake scouting knowledge."
+      },
+      nba: {
+        line: "Dallas NBA talk usually starts with the Mavericks and ends with somebody acting like one star can solve every structural problem.",
+        followUp: "Do Mavs people actually trust the whole setup or just the headline talent?",
+        angle: "Dallas NBA is safer when you stay on belief versus support structure.",
+        context: "Safe because it feels local without trapping you in lineup specifics."
+      },
+      mlb: {
+        line: "Dallas baseball talk is easier because Rangers confidence sounds casual even when expectations are doing the heavy lifting.",
+        followUp: "Does this Rangers version feel sturdy or just dangerous enough to keep everybody loud?",
+        angle: "Dallas baseball works when you stay on confidence and expectations, not bullpen trivia.",
+        context: "Safe because it sounds local without making you fake homework."
+      },
+      nfl: {
+        line: "In Dallas somebody can bring up the Cowboys in April and still act like it is obviously the main event.",
+        followUp: "What is stronger right now, Cowboys belief or Cowboys fatigue?",
+        angle: "Dallas football is safer when you acknowledge the Cowboys gravity and then get out of the way.",
+        context: "Safe because the Cowboys suck all the oxygen out of the room for you."
+      },
+      nhl: {
+        line: "Dallas hockey talk is one of those things outsiders underestimate until Stars people start sounding very serious very fast.",
+        followUp: "Do Stars fans actually trust this group for a long run?",
+        angle: "Dallas hockey is safer when you stay on seriousness and playoff viability.",
+        context: "Safe because it respects the market without bluffing detail."
+      }
+    }
   },
   denver: {
     label: "Denver, CO",
-    teams: "the Nuggets, Broncos, Avalanche, or Rockies",
-    vibe: "Denver sports chatter is calmer on the surface and still weirdly intense once somebody gets going.",
-    proof: "Made for office chat, brewery patios, and the second a Broncos or Nuggets conversation finds you.",
-    confidence: "Denver is better with broad temperature checks than fake insider takes.",
-    room: "Office kitchen, patio drinks, or background-TV conversation.",
-    line: "Denver sports people can sound chill right up until you mention the Broncos and then the volume changes.",
-    context: "Safe because it feels local without demanding specific receipts.",
-    followUp: "So what actually has more real confidence right now, the Nuggets standard or Broncos optimism?",
-    angle: "Denver is safest when you keep it on expectations and avoid pretending you know every roster move.",
-    savedValue: "Denver"
+    savedValue: "Denver",
+    sportLines: {
+      college: {
+        line: "Denver bracket talk stays mellow until somebody decides Mountain West disrespect is now the whole conversation.",
+        followUp: "So is this a trust-the-chaos year or a don't-overthink-it year?",
+        angle: "Denver college hoops works better as a vibe read than a fake scouting report.",
+        context: "Safe because it sounds like you were in the room without bluffing specifics."
+      },
+      nba: {
+        line: "Denver NBA talk is calm right up until somebody asks whether the Nuggets still feel inevitable.",
+        followUp: "Do the Nuggets still feel like the standard there or just the safest bet in a messy field?",
+        angle: "Denver NBA is safer when you stay on standards and trust, not fake bench analysis.",
+        context: "Safe because it sounds local without overreaching."
+      },
+      mlb: {
+        line: "Denver baseball talk usually starts with the Rockies and then everyone remembers why they were trying to stay positive.",
+        followUp: "Does anybody there actually believe in a Rockies direction right now?",
+        angle: "Denver baseball is safer when you keep it on patience and reality, not details.",
+        context: "Safe because the emotional temperature does the work."
+      },
+      nfl: {
+        line: "Denver football talk can sound chill until the Broncos come up and then the whole room shifts posture.",
+        followUp: "What feels more real right now, Broncos optimism or Broncos exhaustion?",
+        angle: "Denver football works when you stay on belief versus caution.",
+        context: "Safe because it sounds like you understand the city's pressure points."
+      },
+      nhl: {
+        line: "Denver hockey talk usually comes with Avalanche expectations baked in whether the room admits it or not.",
+        followUp: "Do Avs people actually trust this team in a long playoff run?",
+        angle: "Denver hockey is safer when you stay on standards and playoff trust.",
+        context: "Safe because it feels local without needing technical hockey detail."
+      }
+    }
   },
   detroit: {
     label: "Detroit, MI",
-    teams: "the Lions, Tigers, Pistons, or Red Wings",
-    vibe: "Detroit sports talk has real edge because hope finally feels less theoretical there.",
-    proof: "Made for office chatter, neighborhood bars, and any room where Lions optimism is either sincere or a setup.",
-    confidence: "In Detroit, honest mood-reading beats fake expertise.",
-    room: "Office chat, post-work drinks, or group text spillover.",
-    line: "Detroit sports people finally sound like hope is allowed again, which still catches everyone off guard.",
-    context: "Safe because it acknowledges the mood without claiming you watched all of it.",
-    followUp: "Does the city feel more invested in the Lions staying real or the Tigers mattering again?",
-    angle: "Detroit works when you respect that fans have earned the right to be suspicious and excited at the same time.",
-    savedValue: "Detroit"
+    savedValue: "Detroit",
+    sportLines: {
+      college: {
+        line: "Detroit bracket talk usually sounds like Big Ten hope mixed with preemptive disappointment management.",
+        followUp: "Does anybody there actually trust the bracket to behave?",
+        angle: "Detroit college hoops is safer when you keep it on trust issues and tournament mood.",
+        context: "Safe because it sounds believable without specifics."
+      },
+      nba: {
+        line: "Detroit NBA talk still carries a little Pistons scar tissue even when somebody tries to sound optimistic.",
+        followUp: "Is there real Pistons patience left or just survival mode?",
+        angle: "Detroit NBA works when you stay on timeline and patience instead of fake roster takes.",
+        context: "Safe because the city's emotional read does the work."
+      },
+      mlb: {
+        line: "Detroit baseball talk is finally interesting again because Tigers hope no longer feels completely theoretical.",
+        followUp: "Do Tigers people actually believe this can stay real?",
+        angle: "Detroit baseball is safer when you acknowledge the hope and the caution at the same time.",
+        context: "Safe because it sounds local without bluffing specifics."
+      },
+      nfl: {
+        line: "Detroit football talk finally sounds like hope is allowed again, which still throws people off a little.",
+        followUp: "Do Lions people feel more confident than nervous right now or not quite?",
+        angle: "Detroit football is safest when you respect both the optimism and the trust issues.",
+        context: "Safe because it acknowledges the city mood without pretending you know every wrinkle."
+      },
+      nhl: {
+        line: "Detroit hockey talk still carries Red Wings standards even when everybody knows the timeline changed.",
+        followUp: "Does Detroit actually feel like the Wings are back on a serious path?",
+        angle: "Detroit hockey works when you stay on standards, patience, and whether the arc feels real.",
+        context: "Safe because it respects the market's history without overplaying expertise."
+      }
+    }
   },
   houston: {
     label: "Houston, TX",
-    teams: "the Astros, Texans, or Rockets",
-    vibe: "Houston sports talk usually sounds measured until somebody decides it is time to defend the Astros or sell Texans optimism.",
-    proof: "Made for office chat, client dinners, and any room where Astros expectations or Texans momentum becomes the topic.",
-    confidence: "In Houston, broad confidence reads sound smarter than fake specifics.",
-    room: "Office lunch, airport bar, or group chat that suddenly turns into sports talk.",
-    line: "Houston sports people can make confidence sound casual even when the expectations are doing a lot of work.",
-    context: "Safe because it feels local without trapping you in details.",
-    followUp: "What feels more real right now, Astros standards or Texans momentum?",
-    angle: "Houston is safer when you keep it on expectations and let someone else start naming players.",
-    savedValue: "Houston"
+    savedValue: "Houston",
+    sportLines: {
+      college: {
+        line: "Houston bracket talk gets real fast because somebody will absolutely treat the Cougars like a civic responsibility.",
+        followUp: "Does Houston feel like a real title-town in college hoops right now or just very loud about it?",
+        angle: "Houston college hoops is safer when you stay on expectations and pressure.",
+        context: "Safe because it sounds local without making you fake deep matchup takes."
+      },
+      nba: {
+        line: "Houston NBA talk usually sounds measured until somebody decides the Rockets timeline is ahead of schedule.",
+        followUp: "Do Rockets people actually trust the climb yet or just like the energy?",
+        angle: "Houston NBA is safer when you keep it on trajectory and trust, not fake details.",
+        context: "Safe because it feels local without trapping you in roster specifics."
+      },
+      mlb: {
+        line: "Houston baseball talk can sound casual even when Astros expectations are doing all the talking underneath.",
+        followUp: "What feels more real right now, Astros standards or Astros fatigue?",
+        angle: "Houston baseball works when you stay on expectations and confidence.",
+        context: "Safe because the Astros give you a believable local lane immediately."
+      },
+      nfl: {
+        line: "Houston football talk usually starts rationally and ends with somebody selling Texans optimism like a growth stock.",
+        followUp: "So is Texans momentum actually real or just aggressively marketable right now?",
+        angle: "Houston football is safer when you keep it on momentum and trust.",
+        context: "Safe because it sounds like you know the city's posture without bluffing specifics."
+      },
+      nhl: {
+        line: "Houston hockey talk is mostly a hypothetical about whether the city would instantly act like it had always cared.",
+        followUp: "If Houston got an NHL team tomorrow, how long before people acted like it was life or death?",
+        angle: "Houston plus hockey is safer if you keep it hypothetical and a little dry.",
+        context: "Safe because there is no need to pretend there is an actual local NHL beat."
+      }
+    }
   },
   losangeles: {
     label: "Los Angeles, CA",
-    teams: "the Lakers, Dodgers, Rams, Clippers, or Kings",
-    vibe: "Los Angeles sports chatter can turn from casual to tribal faster than people admit.",
-    proof: "Made for office chat, client drinks, and the second someone asks if you saw the Lakers or Dodgers.",
-    confidence: "In L.A., broad mood reads sound better than pretending you track every game.",
-    room: "Office kitchen, dinner conversation, or TV-on-in-the-background bar talk.",
-    line: "L.A. sports talk is relaxed right up until you pick the wrong team to sound casual about.",
-    context: "Safe because it sounds local without trapping you in a Lakers-versus-everybody argument.",
-    followUp: "So what pulls more energy right now, Lakers drama or Dodgers expectations?",
-    angle: "Los Angeles is safer when you acknowledge the spotlight and let the real fan handle the specifics.",
-    savedValue: "Los Angeles"
+    savedValue: "Los Angeles",
+    sportLines: {
+      college: {
+        line: "L.A. bracket talk sounds casual right up until somebody turns USC or UCLA into a personality test.",
+        followUp: "So is this city actually locked into March hoops or just pretending not to care until the games matter?",
+        angle: "L.A. college hoops is safer when you stay on vibe and attention level, not deep takes.",
+        context: "Safe because it sounds local without forcing you into school-specific homework."
+      },
+      nba: {
+        line: "L.A. NBA talk is relaxed right up until you pick the wrong team to sound casual about.",
+        followUp: "What is louder right now, Lakers drama or actual confidence in the Clippers doing something serious?",
+        angle: "L.A. NBA is safer when you acknowledge spotlight and ego, then let the real fan handle the specifics.",
+        context: "Safe because it sounds local without trapping you in a team war."
+      },
+      mlb: {
+        line: "L.A. baseball talk is easy because Dodgers expectations do most of the conversational work for you.",
+        followUp: "Does this feel like another Dodgers standards year or one where the pressure gets weird fast?",
+        angle: "L.A. baseball works when you stay on expectation tax, not roster detail.",
+        context: "Safe because everybody already knows where the gravity is."
+      },
+      nfl: {
+        line: "L.A. football talk still feels a little optional until somebody decides the Rams are relevant enough to argue about again.",
+        followUp: "Do people there actually care deeply right now or just enough to have takes?",
+        angle: "L.A. football is safer when you stay on attention level and credibility.",
+        context: "Safe because it sounds honest about the market."
+      },
+      nhl: {
+        line: "L.A. hockey talk gets serious faster than outsiders expect once Kings people decide the room is worth their time.",
+        followUp: "Do the Kings actually feel dangerous there right now?",
+        angle: "L.A. hockey is safer when you keep it on seriousness and playoff viability.",
+        context: "Safe because it respects the local lane without bluffing details."
+      }
+    }
   },
   miami: {
     label: "Miami, FL",
-    teams: "the Heat, Dolphins, Panthers, or Marlins",
-    vibe: "Miami sports talk is stylish on the surface and still serious once somebody starts talking expectations.",
-    proof: "Made for office chat, client dinners, and any room where the Heat or Dolphins suddenly become the social assignment.",
-    confidence: "Miami is better with broad confidence checks than fake technical analysis.",
-    room: "Office kitchen, networking event, or bar conversation with a game on.",
-    line: "Miami sports people can make contender talk sound casual even when the expectations are doing all the heavy lifting.",
-    context: "Safe because it feels local without pretending you lived inside the highlights.",
-    followUp: "What actually feels sturdier right now, Heat culture or Dolphins optimism?",
-    angle: "Miami works when you stay on swagger and expectations, not Xs and Os.",
-    savedValue: "Miami"
+    savedValue: "Miami",
+    sportLines: {
+      college: {
+        line: "Miami bracket talk usually sounds stylish until somebody starts arguing whether the ACC deserves trust again.",
+        followUp: "So is this a trust-the-bracket year or a chaos year with better weather?",
+        angle: "Miami college hoops is safer when you keep it on bracket chaos and confidence, not specifics.",
+        context: "Safe because it sounds natural without pretending you tracked everything."
+      },
+      nba: {
+        line: "Miami NBA talk can make Heat confidence sound casual even when the pressure level is doing all the work.",
+        followUp: "What feels sturdier right now, Heat belief or the mythology around Heat belief?",
+        angle: "Miami NBA is safer when you stay on confidence, culture, and whether anybody actually trusts it.",
+        context: "Safe because it feels local without needing fake scheme talk."
+      },
+      mlb: {
+        line: "Miami baseball talk usually starts with the Marlins and ends with everyone remembering the city has other priorities.",
+        followUp: "Does anyone there actually feel real Marlins momentum or is it still background noise?",
+        angle: "Miami baseball is safer when you keep it on attention level and surprise value.",
+        context: "Safe because it sounds honest about the market."
+      },
+      nfl: {
+        line: "Miami football talk can make Dolphins optimism sound clean even when everybody knows the trust issues are still in the room.",
+        followUp: "Do Dolphins people actually trust this version yet or just enjoy the idea of it?",
+        angle: "Miami football works when you stay on swagger versus trust.",
+        context: "Safe because the city's tone does most of the work."
+      },
+      nhl: {
+        line: "Miami hockey talk stopped being a novelty once Panthers seriousness became part of the local conversation.",
+        followUp: "Do Panthers people expect another deep run now or still treat it like a surprise?",
+        angle: "Miami hockey is safer when you stay on credibility and expectations.",
+        context: "Safe because it acknowledges the shift without pretending you know all the line combos."
+      }
+    }
   },
   minneapolis: {
     label: "Minneapolis-St. Paul, MN",
-    teams: "the Vikings, Timberwolves, Twins, or Wild",
-    vibe: "Twin Cities sports talk always carries a little hope and a little emotional weather preparedness.",
-    proof: "Made for office chat, neighborhood bars, and the second Vikings or Wolves talk arrives.",
-    confidence: "In the Twin Cities, broad emotional reads beat fake specifics.",
-    room: "Office kitchen, happy hour, or post-game text spillover.",
-    line: "Minnesota sports people can sound optimistic and emotionally braced at the same time, which is honestly a skill.",
-    context: "Safe because it sounds local without making you prove anything.",
-    followUp: "So what feels more dangerous right now, real hope or getting too comfortable too early?",
-    angle: "Minnesota is safer when you respect the emotional history and keep your take light.",
-    savedValue: "Minneapolis"
+    savedValue: "Minneapolis",
+    sportLines: {
+      college: {
+        line: "Twin Cities bracket talk always carries a little hope and a little emotional weather preparedness.",
+        followUp: "So is this a trust-the-bracket year or a brace-for-impact year?",
+        angle: "Minnesota college hoops is safer when you stay on emotional temperature, not fake deep takes.",
+        context: "Safe because it sounds local without overcommitting."
+      },
+      nba: {
+        line: "Minnesota NBA talk sounds more confident now, but Timberwolves hope still comes with a backup plan emotionally.",
+        followUp: "Do Wolves people actually trust this level now or still wait for the turn?",
+        angle: "Minnesota NBA is safer when you keep it on trust and emotional history.",
+        context: "Safe because it feels real without needing technical basketball detail."
+      },
+      mlb: {
+        line: "Minnesota baseball talk usually lands somewhere between Twins competence and weather-related realism.",
+        followUp: "Does this Twins group actually feel sturdy enough to trust?",
+        angle: "Minnesota baseball works when you stay on trust and steadiness.",
+        context: "Safe because it sounds like a local read without bluffing specifics."
+      },
+      nfl: {
+        line: "Minnesota football talk can sound optimistic and emotionally braced at the same time, which is honestly impressive.",
+        followUp: "Do Vikings people feel real confidence right now or just familiar temptation?",
+        angle: "Minnesota football is safer when you respect the hope and the scar tissue equally.",
+        context: "Safe because it acknowledges the city's emotional baseline."
+      },
+      nhl: {
+        line: "Minnesota hockey talk is serious because the Wild and the whole State of Hockey thing are never really background noise.",
+        followUp: "Do Wild people actually trust this team in a playoff setting?",
+        angle: "Minnesota hockey is safer when you respect the identity and avoid pretending you know every line.",
+        context: "Safe because it honors the market without bluffing detail."
+      }
+    }
   },
   newyork: {
     label: "New York, NY",
-    teams: "the Knicks, Yankees, Mets, Jets, Giants, Rangers, or Islanders",
-    vibe: "New York sports chatter does not turn into a test you forgot to study for.",
-    proof: "Made for office kitchens, client small talk, and the second somebody decides to ask about the Knicks or Yankees.",
-    confidence: "Broad emotional reads sound more believable in New York than pretending you watched four full games this week.",
-    room: "Office kitchen, group chat, or pre-dinner sports-on-TV conversation.",
-    line: "This time of year New York sports people somehow have basketball stress and baseball hope at the exact same time.",
-    context: "Safe because it sounds local without claiming you watched every minute of anything.",
-    followUp: "So what has people more stressed right now, the Knicks or everything else?",
-    angle: "New York works when you acknowledge playoff nerves plus baseball optimism and then stop before it becomes debate club.",
-    savedValue: "New York"
+    savedValue: "New York",
+    sportLines: {
+      college: {
+        line: "New York bracket talk somehow turns into an argument about whether anyone in the city really watched all season.",
+        followUp: "So is this a year for chalk confidence or fake-underseeded-genius takes?",
+        angle: "New York college hoops is safer when you keep it on bracket stress and confidence theater.",
+        context: "Safe because it sounds like you know the room without claiming too much."
+      },
+      nba: {
+        line: "New York NBA talk is never quiet because the Knicks make every decent stretch feel like civic destiny or impending disaster.",
+        followUp: "What is louder right now, Knicks confidence or Knicks panic management?",
+        angle: "New York NBA works when you acknowledge the stress and stop before it becomes debate club.",
+        context: "Safe because it feels local without pretending you watched four games this week."
+      },
+      mlb: {
+        line: "New York baseball talk is easy because Yankees expectations and Mets emotional weather are both always in season.",
+        followUp: "Which side feels more stable right now, Yankees standards or Mets hope?",
+        angle: "New York baseball is safer when you keep it on pressure, optimism, and inevitable overreaction.",
+        context: "Safe because the city does half the writing for you."
+      },
+      nfl: {
+        line: "New York football talk is basically Jets hope and Giants skepticism trying to occupy the same sentence.",
+        followUp: "What feels more fragile right now, Jets belief or Giants patience?",
+        angle: "New York football is safer when you stay on trust issues and expectations.",
+        context: "Safe because it sounds local without inviting a fact check."
+      },
+      nhl: {
+        line: "New York hockey talk can go from casual to tribal immediately depending on whether Rangers or Islanders energy hits first.",
+        followUp: "Who feels more credible there right now, the Rangers or the version of the Islanders fans still defend?",
+        angle: "New York hockey is safer when you acknowledge the tribal part and let the real fan sort the details.",
+        context: "Safe because it sounds like you know the city's split loyalties."
+      }
+    }
   },
   philadelphia: {
     label: "Philadelphia, PA",
-    teams: "the Eagles, Phillies, Sixers, or Flyers",
-    vibe: "Philadelphia sports talk is direct, suspicious, and ready to argue with your tone if needed.",
-    proof: "Made for office chat, neighborhood bars, and the second somebody decides to test how serious you are about Philly sports.",
-    confidence: "In Philly, broad honesty lands better than fake confidence.",
-    room: "Office kitchen, client dinner, or game-on-in-the-background conversation.",
-    line: "Philadelphia sports people can hear fake confidence from across the room, so broad honesty is the safer play.",
-    context: "Safe because it sounds local without inviting an interrogation.",
-    followUp: "So what feels more stable right now, Phillies confidence or the city's ability to trust any of this?",
-    angle: "Philadelphia is safer when you respect the edge, keep it brief, and let the loudest real fan take it from there.",
-    savedValue: "Philadelphia"
+    savedValue: "Philadelphia",
+    sportLines: {
+      college: {
+        line: "Philly bracket talk is direct enough that fake confidence gets detected almost immediately.",
+        followUp: "So is this a trust-the-bracket year or a throw-the-bracket-in-the-river year?",
+        angle: "Philly college hoops is safer when you keep it honest and broad.",
+        context: "Safe because it sounds normal without inviting interrogation."
+      },
+      nba: {
+        line: "Philly NBA talk can hear fake confidence from across the room, especially if the Sixers come up.",
+        followUp: "Do Sixers people actually trust this setup right now or are they just trying not to say the quiet part out loud?",
+        angle: "Philly NBA is safer when you stay on trust and nerves, not fake detail.",
+        context: "Safe because it sounds local without getting you cross-examined."
+      },
+      mlb: {
+        line: "Philly baseball talk is easier because Phillies confidence and the city's ability to get tense are both always available.",
+        followUp: "What feels more stable right now, Phillies belief or Philadelphia's emotional regulation?",
+        angle: "Philly baseball works when you stay on confidence and edge.",
+        context: "Safe because it respects the market without overreaching."
+      },
+      nfl: {
+        line: "Philadelphia football talk is direct, suspicious, and ready to argue with your tone if needed.",
+        followUp: "Do Eagles people actually feel calm right now or just louder than the rest of us?",
+        angle: "Philly football is safer when you respect the edge and keep your take short.",
+        context: "Safe because it sounds local without inviting a full audit."
+      },
+      nhl: {
+        line: "Philly hockey talk gets intense fast because Flyers patience is not a naturally abundant resource.",
+        followUp: "Does anyone there really think the Flyers timeline is clean yet?",
+        angle: "Philly hockey is safer when you stay on patience and edge, not specifics.",
+        context: "Safe because it fits the market mood without bluffing detail."
+      }
+    }
   },
   phoenix: {
     label: "Phoenix, AZ",
-    teams: "the Suns, Cardinals, Diamondbacks, or Coyotes-shaped emotional scar tissue",
-    vibe: "Phoenix sports talk usually starts sunny and turns tense once expectations show up.",
-    proof: "Made for office chat, patio drinks, and any room where someone brings up the Suns or whether Arizona fans can relax yet.",
-    confidence: "Phoenix is better with broad mood reads than fake detail.",
-    room: "Office kitchen, networking chat, or game-on-at-the-bar conversation.",
-    line: "Phoenix sports people can sound hopeful and battle-tested in the same sentence and honestly that tracks.",
-    context: "Safe because it feels local without pretending you watched every possession.",
-    followUp: "What feels more fragile right now, Suns confidence or Arizona sports peace in general?",
-    angle: "Phoenix works when you acknowledge the nerves, avoid fake specifics, and move on.",
-    savedValue: "Phoenix"
+    savedValue: "Phoenix",
+    sportLines: {
+      college: {
+        line: "Phoenix bracket talk usually has one person acting calm and one person treating Arizona basketball stress like a lifestyle.",
+        followUp: "So is this an Arizona trust year or another year of bracket anxiety?",
+        angle: "Phoenix college hoops is safer when you keep it on nerves and expectations.",
+        context: "Safe because it sounds plausible without needing deep college hoops detail."
+      },
+      nba: {
+        line: "Phoenix NBA talk can sound hopeful and battle-tested in the same sentence, which honestly tracks.",
+        followUp: "What feels more fragile right now, Suns confidence or Arizona sports peace in general?",
+        angle: "Phoenix NBA is safer when you acknowledge the nerves and move on before it gets too specific.",
+        context: "Safe because it feels local without pretending you watched every possession."
+      },
+      mlb: {
+        line: "Phoenix baseball talk is easier now because Diamondbacks credibility gives the room something real to work with.",
+        followUp: "Do Diamondbacks people trust this to stay serious or still treat it like a pleasant surprise?",
+        angle: "Phoenix baseball works when you stay on credibility and momentum.",
+        context: "Safe because it sounds local without player-specific homework."
+      },
+      nfl: {
+        line: "Phoenix football talk usually starts sunny and turns tense once Cardinals expectations show up.",
+        followUp: "Do Cardinals people actually buy this direction right now or just need something to believe in?",
+        angle: "Phoenix football is safer when you keep it on hope versus trust issues.",
+        context: "Safe because it acknowledges the market without bluffing specifics."
+      },
+      nhl: {
+        line: "Phoenix hockey talk now has a weird aftertaste because everybody still has Coyotes-shaped emotional scar tissue.",
+        followUp: "Does Arizona even want to talk hockey seriously right now or just litigate what happened?",
+        angle: "Phoenix hockey is safer when you stay on the weirdness and don't oversell it.",
+        context: "Safe because it matches the market reality."
+      }
+    }
   },
   sanfrancisco: {
     label: "Bay Area, CA",
-    teams: "the Warriors, 49ers, Giants, A's, or Sharks",
-    vibe: "Bay Area sports talk usually mixes confidence, tech-brain analysis, and one person already thinking three seasons ahead.",
-    proof: "Made for office chat, client dinners, and the second someone opens a Warriors or 49ers conversation like it is product strategy.",
-    confidence: "In the Bay, broad confidence checks beat fake detail.",
-    room: "Office kitchen, startup happy hour, or sports-on-TV background chatter.",
-    line: "Bay Area sports people can make a normal game conversation sound like a long-term systems review.",
-    context: "Safe because it sounds local without forcing you into debate mode.",
-    followUp: "So what has the higher expectation tax right now, the 49ers or whatever version of the Warriors people still believe in?",
-    angle: "The Bay is safer when you keep it on standards and expectations, not fake analysis.",
-    savedValue: "San Francisco"
+    savedValue: "San Francisco",
+    sportLines: {
+      college: {
+        line: "Bay Area bracket talk can sound like a systems review with bonus complaints about the selection committee.",
+        followUp: "So is this a trust-the-models year or a chaos year pretending to be data-driven?",
+        angle: "Bay Area college hoops is safer when you keep it on confidence and bracket logic theater.",
+        context: "Safe because it sounds local without requiring actual spreadsheet receipts."
+      },
+      nba: {
+        line: "Bay Area NBA talk can turn a normal Warriors conversation into a long-term organizational philosophy meeting.",
+        followUp: "What has the higher expectation tax right now, the Warriors brand or the actual roster reality?",
+        angle: "Bay Area NBA is safer when you keep it on standards and timeline, not fake rotation talk.",
+        context: "Safe because it feels local without forcing you into debate mode."
+      },
+      mlb: {
+        line: "Bay Area baseball talk is easy because Giants seriousness and A's emotional residue are both always floating around.",
+        followUp: "What feels more alive there right now, Giants belief or everyone still being mad about baseball politics?",
+        angle: "Bay Area baseball is safer when you stay on expectations and mood.",
+        context: "Safe because it sounds local without trivia."
+      },
+      nfl: {
+        line: "Bay Area football talk usually mixes 49ers confidence with the kind of overanalysis that sounds expensive.",
+        followUp: "Do 49ers people still feel like the standard there or just the most exhausting contender?",
+        angle: "Bay Area football is safer when you stay on expectation tax and trust.",
+        context: "Safe because it feels local without fake film breakdowns."
+      },
+      nhl: {
+        line: "Bay Area hockey talk is more niche, but Sharks people can still make it sound like a long rebuild discussion you should respect.",
+        followUp: "Does anyone there think the Sharks timeline is meaningfully turning yet?",
+        angle: "Bay Area hockey is safer when you keep it on timeline and patience.",
+        context: "Safe because it respects the market without overdoing it."
+      }
+    }
   },
   seattle: {
     label: "Seattle, WA",
-    teams: "the Seahawks, Mariners, Kraken, or Storm",
-    vibe: "Seattle sports talk sounds calm until the optimism and dread start sharing a seat.",
-    proof: "Made for office chat, coffee-shop side talk, and the second somebody brings up the Mariners or Seahawks.",
-    confidence: "Seattle is better with broad emotional reads than fake specifics.",
-    room: "Office kitchen, happy hour, or casual group conversation.",
-    line: "Seattle sports people have perfected sounding hopeful and guarded at the exact same time.",
-    context: "Safe because it acknowledges the mood without pretending you tracked every game.",
-    followUp: "What feels more real right now, Mariners optimism or Seahawks patience?",
-    angle: "Seattle is safest when you keep it light and let the real fan decide how deep to go.",
-    savedValue: "Seattle"
+    savedValue: "Seattle",
+    sportLines: {
+      college: {
+        line: "Seattle bracket talk sounds calm until somebody starts selling a sleeper pick like it is morally correct.",
+        followUp: "So is this a smart-chaos bracket year or a keep-it-simple year?",
+        angle: "Seattle college hoops is safer when you keep it on vibe and bracket philosophy, not specifics.",
+        context: "Safe because it sounds natural without bluffing details."
+      },
+      nba: {
+        line: "Seattle NBA talk is mostly a reminder that the city will absolutely care the second it gets a team back.",
+        followUp: "If Seattle had an NBA team tomorrow, how long before the city acted like it had always been the plan?",
+        angle: "Seattle plus NBA is safer when you keep it on appetite and anticipation.",
+        context: "Safe because the city does not have a current NBA team, so honesty wins."
+      },
+      mlb: {
+        line: "Seattle baseball talk has perfected sounding hopeful and guarded at the exact same time.",
+        followUp: "What feels more real right now, Mariners optimism or Mariners trust issues?",
+        angle: "Seattle baseball is safest when you keep it light and let the real fan decide how deep to go.",
+        context: "Safe because it acknowledges the city's emotional pattern without pretending expertise."
+      },
+      nfl: {
+        line: "Seattle football talk sounds calm until Seahawks expectations show up and then the optimism and dread start sharing a chair.",
+        followUp: "Do Seahawks people actually feel patient right now or just temporarily composed?",
+        angle: "Seattle football works when you stay on patience and trust, not specifics.",
+        context: "Safe because it feels local without pretending you tracked every snap."
+      },
+      nhl: {
+        line: "Seattle hockey talk still carries Kraken novelty energy, but people have moved well past pretending it is just a mascot story.",
+        followUp: "Do Kraken people actually trust this thing to turn serious now?",
+        angle: "Seattle hockey is safer when you keep it on growth, credibility, and patience.",
+        context: "Safe because it respects the market without bluffing deep knowledge."
+      }
+    }
   },
   stlouis: {
     label: "St. Louis, MO",
-    teams: "the Cardinals, Blues, or City SC",
-    vibe: "St. Louis sports talk is more serious than outsiders expect and people notice if you bluff.",
-    proof: "Made for office chat, family parties, and any room where Cardinals standards or Blues opinions show up fast.",
-    confidence: "In St. Louis, respectful broad takes work better than fake depth.",
-    room: "Office kitchen, patio chat, or TV-on-in-the-background conversation.",
-    line: "St. Louis sports people can make normal conversation sound like a standards meeting, especially if the Cardinals come up.",
-    context: "Safe because it respects the market without inviting a fact check.",
-    followUp: "So what feels more touchy right now, Cardinals expectations or the city's patience level?",
-    angle: "St. Louis works when you acknowledge the standards and keep your take short.",
-    savedValue: "St. Louis"
+    savedValue: "St. Louis",
+    sportLines: {
+      college: {
+        line: "St. Louis bracket talk is more serious than outsiders expect, especially once local hoops pride shows up.",
+        followUp: "So is this a trust-the-bracket year or a everybody-thinks-they-found-the-trap year?",
+        angle: "St. Louis college hoops is safer when you sound respectful and broad.",
+        context: "Safe because it fits the market without inviting a quiz."
+      },
+      nba: {
+        line: "St. Louis NBA talk is mostly a reminder that the city can care a lot about basketball without having a local team to dump it on.",
+        followUp: "If St. Louis had an NBA team tomorrow, would the city be instantly intense about it?",
+        angle: "St. Louis plus NBA is safer when you keep it on appetite and basketball seriousness.",
+        context: "Safe because there is no need to pretend there is a current local NBA story."
+      },
+      mlb: {
+        line: "St. Louis baseball talk can make normal conversation sound like a standards meeting, especially when the Cardinals come up.",
+        followUp: "So what feels more touchy right now, Cardinals expectations or the city's patience level?",
+        angle: "St. Louis baseball is safer when you acknowledge the standards and keep your take short.",
+        context: "Safe because the Cardinals do the heavy lifting for you."
+      },
+      nfl: {
+        line: "St. Louis football talk is mostly a weird blend of residual bitterness and people pretending they are over it.",
+        followUp: "Does St. Louis even want to talk NFL seriously now or just stay mad on principle?",
+        angle: "St. Louis plus NFL is safer when you keep it honest and a little dry.",
+        context: "Safe because the market reality is messy and bluffing would sound stupid."
+      },
+      nhl: {
+        line: "St. Louis hockey talk is straightforward because Blues people treat seriousness like the default setting.",
+        followUp: "Do Blues fans actually trust this group right now or just respect the standard?",
+        angle: "St. Louis hockey works when you stay on trust and expectations.",
+        context: "Safe because it respects the market without overplaying expertise."
+      }
+    }
   },
   washington: {
     label: "Washington, DC",
-    teams: "the Commanders, Nationals, Capitals, or Wizards",
-    vibe: "DC sports talk usually sounds rational for about ten seconds and then somebody gets personal about the Commanders.",
-    proof: "Made for office chat, networking events, and the second Commanders or Capitals talk sneaks into the room.",
-    confidence: "In DC, broad realism sounds better than fake certainty.",
-    room: "Office kitchen, client dinner, or after-work drinks.",
-    line: "DC sports people can sound professionally composed right up until the Commanders enter the conversation.",
-    context: "Safe because it feels local without making you fake insider status.",
-    followUp: "What actually feels more stable right now, Commanders optimism or the city's ability to trust it?",
-    angle: "DC is safer when you keep it on belief versus skepticism and avoid pretending you know the roster.",
-    savedValue: "Washington, DC"
+    savedValue: "Washington, DC",
+    sportLines: {
+      college: {
+        line: "DC bracket talk sounds rational for about ten seconds and then somebody starts acting like they solved the whole field.",
+        followUp: "So is this a trust-the-committee year or a complain-about-the-committee year?",
+        angle: "DC college hoops is safer when you keep it on bracket politics and expectations.",
+        context: "Safe because it sounds like a local room without bluffing specifics."
+      },
+      nba: {
+        line: "DC NBA talk usually sounds measured because Wizards conversation is less about hype and more about surviving the timeline.",
+        followUp: "Does anyone there actually think the Wizards arc feels clean yet?",
+        angle: "DC NBA is safer when you stay on realism and patience.",
+        context: "Safe because it feels honest about the market."
+      },
+      mlb: {
+        line: "DC baseball talk is easier because Nationals conversation can still pivot between patience and sudden optimism fast.",
+        followUp: "Do Nats people actually feel the rebuild turning or just want to?",
+        angle: "DC baseball works when you stay on trajectory and credibility.",
+        context: "Safe because it sounds local without pretending to track every inning."
+      },
+      nfl: {
+        line: "DC football talk usually sounds professional right up until the Commanders come up and then somebody gets personal.",
+        followUp: "What actually feels more stable right now, Commanders optimism or the city's ability to trust it?",
+        angle: "DC football is safer when you keep it on belief versus skepticism and avoid fake roster knowledge.",
+        context: "Safe because it feels local without making you sound like a try-hard."
+      },
+      nhl: {
+        line: "DC hockey talk still carries Capitals standards even when the room knows the era is shifting.",
+        followUp: "Do Caps people actually trust this group now or mostly the legacy?",
+        angle: "DC hockey is safer when you stay on standard, transition, and whether trust is still there.",
+        context: "Safe because it respects the market without deep hockey trivia."
+      }
+    }
   }
 };
 
@@ -327,39 +837,17 @@ const cityAliases = {
   "arlington va": "washington"
 };
 
-const storageKey = "not-a-fan-location";
+const sportStorageKey = "not-a-fan-sport";
+const locationStorageKey = "not-a-fan-location";
 const signupConfig = {
   endpoint: "https://formsubmit.co/ajax/hello@notafan.app",
   inbox: "hello@notafan.app"
 };
-let activeProfileKey = "default";
-let activeLocationLabel = profileLibrary.default.label;
+
+let activeSportKey = "college";
+let activeCityKey = "default";
+let activeLocationLabel = cityProfiles.default.label;
 let lastAttemptedLocation = "";
-
-function buildProfile(base) {
-  if (!base.teams) {
-    return base;
-  }
-
-  return {
-    label: base.label,
-    heroLede: `Not a Fan gives you one safe opener, one easy follow-up, and one local angle so ${base.vibe}`,
-    heroProof: base.proof,
-    confidenceNote: base.confidence,
-    bestRoom: base.room,
-    safeLine: base.line,
-    safeContext: base.context,
-    followUp: base.followUp,
-    localAngle: base.angle,
-    savedValue: base.savedValue,
-    fallbackHint: `Currently tuned to ${base.label}`,
-    note: `Try ${base.teams}. Major-market shortcuts only. No giant dropdown nonsense.`
-  };
-}
-
-const profiles = Object.fromEntries(
-  Object.entries(profileLibrary).map(([key, value]) => [key, buildProfile(value)])
-);
 
 function normalizeLocation(input) {
   return input
@@ -371,64 +859,104 @@ function normalizeLocation(input) {
 }
 
 function resolveLocation(input) {
+  const cleaned = input.trim();
   const normalized = normalizeLocation(input);
-  const profileKey = profiles[cityAliases[normalized]] ? cityAliases[normalized] : "default";
+  const cityKey = cityProfiles[cityAliases[normalized]] ? cityAliases[normalized] : "default";
   return {
-    cleaned: input.trim(),
+    cleaned,
     normalized,
-    profileKey,
-    matched: profileKey !== "default"
+    cityKey,
+    matched: cityKey !== "default"
   };
 }
 
-function resolveProfileFromSaved(input) {
-  return input ? resolveLocation(input) : { cleaned: "", normalized: "", profileKey: "default", matched: false };
-}
-
-function describeLocationForSignup(profileKey, rawLocation) {
-  if (profileKey !== "default") {
-    return profiles[profileKey].label;
+function describeLocationForSignup(cityKey, rawLocation) {
+  if (cityKey !== "default") {
+    return cityProfiles[cityKey].label;
   }
 
   if (rawLocation) {
     return `${rawLocation} (broad fallback)`;
   }
 
-  return profiles.default.label;
+  return cityProfiles.default.label;
 }
 
-function renderProfile(profileKey, options = {}) {
-  activeProfileKey = profileKey;
-  const profile = profiles[profileKey];
-  const isDefault = profileKey === "default";
+function getCombinedProfile(sportKey, cityKey) {
+  const sport = sportProfiles[sportKey];
+  const city = cityProfiles[cityKey] || cityProfiles.default;
+  const citySport = city.sportLines?.[sportKey];
+
+  return {
+    heroLede: sport.heroLede,
+    heroProof: citySport ? `${sport.heroProof} In ${city.label}, the local version is: "${citySport.line}"` : sport.heroProof,
+    confidenceNote: sport.confidenceNote,
+    bestRoom: sport.bestRoom,
+    safeLine: citySport?.line || sport.safeLine,
+    safeContext: citySport?.context || sport.safeContext,
+    followUp: citySport?.followUp || sport.followUp,
+    localAngle: citySport?.angle || sport.localAngle,
+    pill: cityKey === "default" ? sport.pill : `${sport.shortLabel} • ${city.label}`,
+    personalizeTitle: sport.personalizeTitle,
+    personalizeDescription: sport.personalizeDescription,
+    cityPrompt: sport.cityPrompt,
+    note: sport.note
+  };
+}
+
+function syncSportButtons() {
+  document.querySelectorAll("[data-sport-preset]").forEach((button) => {
+    const matches = button.getAttribute("data-sport-preset") === activeSportKey;
+    button.classList.toggle("is-active", matches);
+    button.setAttribute("aria-pressed", matches ? "true" : "false");
+  });
+}
+
+function syncCityButtons() {
+  document.querySelectorAll("[data-location-preset]").forEach((button) => {
+    const matches = resolveLocation(button.getAttribute("data-location-preset")).cityKey === activeCityKey && activeCityKey !== "default";
+    button.classList.toggle("is-active", matches);
+    button.setAttribute("aria-pressed", matches ? "true" : "false");
+  });
+}
+
+function renderState(options = {}) {
+  const profile = getCombinedProfile(activeSportKey, activeCityKey);
+  const isDefaultCity = activeCityKey === "default";
   const fallbackCity = options.fallbackCity || "";
-  const isFallback = Boolean(fallbackCity) && isDefault;
+  const isFallback = Boolean(fallbackCity) && isDefaultCity;
+  const sport = sportProfiles[activeSportKey];
 
   document.getElementById("hero-lede").textContent = profile.heroLede;
   document.getElementById("hero-proof").textContent = profile.heroProof;
+  document.getElementById("situation-copy").textContent = sport.situation;
   document.getElementById("safe-line-text").textContent = `"${profile.safeLine}"`;
   document.getElementById("safe-line-context").textContent = isFallback
-    ? `No dedicated ${fallbackCity} script yet. This is the deliberate broad angle: safe, normal, and usable anywhere.`
+    ? `No dedicated ${fallbackCity} script yet. ${sport.shortLabel} stays in place and the city layer deliberately falls back to broad.`
     : profile.safeContext;
   document.getElementById("location-pill").textContent = isFallback
-    ? `Using the national angle for ${fallbackCity}`
-    : isDefault
-      ? "Default local angle: broad and safe"
-      : `Personalized for ${profile.label}`;
+    ? `${sport.shortLabel} • broad city fallback for ${fallbackCity}`
+    : profile.pill;
   document.getElementById("location-saved").textContent = isFallback
-    ? `${fallbackCity} saved. Using the broad version on purpose.`
-    : profile.fallbackHint;
+    ? `${fallbackCity} saved. Using the broad city fallback on purpose.`
+    : isDefaultCity
+      ? `${profile.cityPrompt} Currently using the broad default.`
+      : `City refinement on: ${cityProfiles[activeCityKey].label}`;
   document.getElementById("hero-follow-up").textContent = profile.followUp;
   document.getElementById("hero-local-angle").textContent = isFallback
-    ? `If someone wants a ${fallbackCity} angle, say you are taking the broad version and let the real fan supply the local details.`
+    ? `If someone wants a ${fallbackCity} angle, stay with the broad ${sport.shortLabel} version and let the real fan supply the city details.`
     : profile.localAngle;
   document.getElementById("confidence-note").textContent = profile.confidenceNote;
   document.getElementById("best-room").textContent = profile.bestRoom;
-  document.getElementById("cta-location").value = describeLocationForSignup(profileKey, fallbackCity || lastAttemptedLocation);
+  document.getElementById("personalize-title").textContent = profile.personalizeTitle;
+  document.getElementById("personalize-description").textContent = profile.personalizeDescription;
+  document.getElementById("cta-location").value = `${sport.label}${activeLocationLabel && activeLocationLabel !== cityProfiles.default.label ? ` | ${activeLocationLabel}` : ""}`;
   document.getElementById("location-note").textContent = isFallback
-    ? `${fallbackCity} is outside the current market set. We save it anyway and use the broad script instead of pretending we know that market.`
+    ? `${fallbackCity} is outside the current market set. We keep the ${sport.shortLabel} example and use the broad city fallback instead of pretending we know that market.`
     : profile.note;
-  syncPresetButtons(profileKey);
+
+  syncSportButtons();
+  syncCityButtons();
 }
 
 function copyText(text, successMessage) {
@@ -472,35 +1000,41 @@ function showToast(message) {
   }, 1800);
 }
 
-function syncPresetButtons(profileKey) {
-  document.querySelectorAll("[data-location-preset]").forEach((button) => {
-    const matches = resolveLocation(button.getAttribute("data-location-preset")).profileKey === profileKey;
-    button.classList.toggle("is-active", matches);
-    button.setAttribute("aria-pressed", matches ? "true" : "false");
-  });
+function applySport(sportKey, options = {}) {
+  activeSportKey = sportProfiles[sportKey] ? sportKey : "college";
+  window.localStorage.setItem(sportStorageKey, activeSportKey);
+  renderState(options);
+
+  if (!options.silent) {
+    showToast(`${sportProfiles[activeSportKey].label} selected`);
+  }
 }
 
-function applyLocation(rawValue) {
+function applyLocation(rawValue, options = {}) {
   const result = resolveLocation(rawValue);
-  const savedValue = result.cleaned || profiles[result.profileKey].savedValue;
+  const savedValue = result.cleaned || cityProfiles[result.cityKey].savedValue;
   document.getElementById("location-input").value = savedValue;
   lastAttemptedLocation = result.cleaned;
-  activeLocationLabel = describeLocationForSignup(result.profileKey, result.cleaned);
+  activeCityKey = result.cityKey;
+  activeLocationLabel = describeLocationForSignup(result.cityKey, result.cleaned);
 
   if (savedValue) {
-    window.localStorage.setItem(storageKey, savedValue);
+    window.localStorage.setItem(locationStorageKey, savedValue);
   } else {
-    window.localStorage.removeItem(storageKey);
+    window.localStorage.removeItem(locationStorageKey);
   }
 
-  renderProfile(result.profileKey, { fallbackCity: result.matched ? "" : result.cleaned });
-  showToast(
-    result.matched
-      ? `Local view set to ${profiles[result.profileKey].label}`
-      : result.cleaned
-        ? `${result.cleaned} saved with the broad fallback`
-        : "Using the broad default"
-  );
+  renderState({ fallbackCity: result.matched ? "" : result.cleaned });
+
+  if (!options.silent) {
+    showToast(
+      result.matched
+        ? `City refinement set to ${cityProfiles[result.cityKey].label}`
+        : result.cleaned
+          ? `${result.cleaned} saved with the broad city fallback`
+          : "Using the broad city default"
+    );
+  }
 }
 
 async function handleCtaSubmit(event) {
@@ -521,7 +1055,7 @@ async function handleCtaSubmit(event) {
 
   const payload = {
     email,
-    location: activeLocationLabel,
+    location: document.getElementById("cta-location").value,
     source: "notafan.app early access",
     _subject: "Not a Fan early access request",
     _template: "table",
@@ -546,7 +1080,7 @@ async function handleCtaSubmit(event) {
     }
 
     form.reset();
-    document.getElementById("cta-location").value = activeLocationLabel;
+    document.getElementById("cta-location").value = `${sportProfiles[activeSportKey].label}${activeLocationLabel && activeLocationLabel !== cityProfiles.default.label ? ` | ${activeLocationLabel}` : ""}`;
     meta.textContent = `Request sent. If this is the first submission, ${signupConfig.inbox} still needs to confirm FormSubmit's activation email.`;
     meta.classList.add("is-live");
     showToast("Request sent");
@@ -567,11 +1101,22 @@ function renderSuggestionList() {
 
 function wireEvents() {
   document.getElementById("copy-safe-line").addEventListener("click", () => {
-    copyText(profiles[activeProfileKey].safeLine, "Safe line copied");
+    const combined = getCombinedProfile(activeSportKey, activeCityKey);
+    copyText(combined.safeLine, "Safe line copied");
   });
 
   document.getElementById("play-safe-line").addEventListener("click", () => {
-    speakText(profiles[activeProfileKey].safeLine, "safe line");
+    const combined = getCombinedProfile(activeSportKey, activeCityKey);
+    speakText(combined.safeLine, "safe line");
+  });
+
+  document.querySelector(".sport-picks").addEventListener("click", (event) => {
+    const preset = event.target.closest("[data-sport-preset]");
+    if (!preset) {
+      return;
+    }
+
+    applySport(preset.getAttribute("data-sport-preset"));
   });
 
   document.getElementById("location-form").addEventListener("submit", (event) => {
@@ -596,12 +1141,18 @@ function wireEvents() {
 
 function init() {
   renderSuggestionList();
-  const savedLocation = window.localStorage.getItem(storageKey);
-  const result = resolveProfileFromSaved(savedLocation);
-  document.getElementById("location-input").value = savedLocation || "";
-  lastAttemptedLocation = result.cleaned;
-  activeLocationLabel = describeLocationForSignup(result.profileKey, result.cleaned);
-  renderProfile(result.profileKey, { fallbackCity: result.matched ? "" : result.cleaned });
+
+  const savedSport = window.localStorage.getItem(sportStorageKey);
+  activeSportKey = sportProfiles[savedSport] ? savedSport : "college";
+
+  const savedLocation = window.localStorage.getItem(locationStorageKey) || "";
+  const locationResult = resolveLocation(savedLocation);
+  document.getElementById("location-input").value = savedLocation;
+  lastAttemptedLocation = locationResult.cleaned;
+  activeCityKey = locationResult.cityKey;
+  activeLocationLabel = describeLocationForSignup(locationResult.cityKey, locationResult.cleaned);
+
+  renderState({ fallbackCity: locationResult.matched ? "" : locationResult.cleaned });
   wireEvents();
 }
 
