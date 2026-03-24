@@ -938,7 +938,6 @@ function renderState(options = {}) {
   const isFallback = Boolean(fallbackCity) && isDefaultCity;
   const sport = sportProfiles[activeSportKey];
 
-  document.getElementById("hero-lede").textContent = profile.heroLede;
   document.getElementById("selector-helper").textContent = profile.selectorHelper;
   document.getElementById("safe-line-text").textContent = `"${profile.safeLine}"`;
   document.getElementById("safe-line-context").textContent = isFallback

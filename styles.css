@@ -659,8 +659,11 @@ button:disabled {
     max-width: none;
   }
 
+  .hero {
+    gap: 0.65rem;
+  }
+
   .personalize-panel,
-  .hero,
   .mini-proof,
   .hero-situations,
   .survival-sequence {
@@ -677,14 +680,17 @@ button:disabled {
     border-radius: 20px;
   }
 
-  .hero-copy,
+  .hero-copy {
+    padding: 0.85rem 0.9rem 0.9rem;
+  }
+
   .personalize-panel,
   .proof-card {
     padding: 1rem;
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.2rem, 11vw, 3.2rem);
+    font-size: clamp(1.9rem, 9vw, 2.6rem);
     line-height: 0.95;
   }
 
@@ -700,8 +706,8 @@ button:disabled {
   }
 
   .sport-selector {
-    margin-top: 0.75rem;
-    padding: 0.75rem;
+    margin-top: 0.6rem;
+    padding: 0.65rem;
   }
 
   .selector-helper {
@@ -716,8 +722,7 @@ button:disabled {
   .hero-actions,
   .safe-line-actions,
   .cta-form,
-  .location-field,
-  .sport-selector-topline {
+  .location-field {
     flex-direction: column;
   }
 
