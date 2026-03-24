@@ -795,3 +795,71 @@ button:disabled {
     text-align: center;
   }
 }
+
+@media (max-width: 390px) {
+  .safe-line-card {
+    padding: 0.72rem;
+  }
+
+  .safe-line-header {
+    gap: 0.3rem;
+  }
+
+  .safe-line-label,
+  .sequence-label {
+    font-size: 0.64rem;
+    letter-spacing: 0.07em;
+  }
+
+  .status-pill {
+    padding: 0.24rem 0.46rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+  }
+
+  .safe-line-coach {
+    margin-top: 0.38rem;
+    font-size: 0.74rem;
+    line-height: 1.3;
+  }
+
+  .safe-line-card blockquote {
+    margin: 0.45rem 0 0.52rem;
+    font-size: clamp(1.42rem, 8.4vw, 1.9rem);
+    line-height: 0.96;
+  }
+
+  .safe-line-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.9fr);
+    gap: 0.42rem;
+  }
+
+  .safe-line-actions .primary-button,
+  .safe-line-actions .ghost-button {
+    width: 100%;
+    min-width: 0;
+    padding: 0.7rem 0.72rem;
+    font-size: 0.83rem;
+  }
+
+  .safe-line-context {
+    margin: 0.5rem 0 0.38rem;
+    font-size: 0.76rem;
+    line-height: 1.42;
+  }
+
+  .survival-sequence {
+    gap: 0.38rem;
+  }
+
+  .sequence-step {
+    padding: 0.48rem 0.52rem;
+  }
+
+  .sequence-step p {
+    margin-top: 0.22rem;
+    font-size: 0.82rem;
+    line-height: 1.36;
+  }
+}
