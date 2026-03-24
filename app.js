@@ -944,7 +944,7 @@ function renderState(options = {}) {
     ? `No dedicated ${fallbackCity} script yet. ${sport.shortLabel} stays broad on purpose.`
     : profile.safeContext;
   document.getElementById("location-pill").textContent = isFallback
-    ? `${sport.shortLabel} • broad city fallback for ${fallbackCity}`
+    ? `${sport.shortLabel} · ${fallbackCity}`
     : profile.pill;
   document.getElementById("location-saved").textContent = isFallback
     ? `${fallbackCity} saved. Using the broad city fallback on purpose.`

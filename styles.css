@@ -814,7 +814,11 @@ button:disabled {
   .status-pill {
     padding: 0.24rem 0.46rem;
     font-size: 0.62rem;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .safe-line-coach {
