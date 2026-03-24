@@ -1090,8 +1090,8 @@ async function handleCtaSubmit(event) {
     const wrap = document.querySelector(".cta-form-wrap");
     wrap.innerHTML = `
       <div class="signup-success" role="status" aria-live="polite">
-        <p class="signup-success-heading">You're on the list.</p>
-        <p class="signup-success-body">We’ll send one short daily line when the inbox flow is live. The safe line above is ready to use right now — no waiting.</p>
+        <p class="signup-success-heading">You’re in.</p>
+        <p class="signup-success-body">Tomorrow’s line will land before you need it. The one above is ready right now.</p>
       </div>
     `;
   } catch (error) {
