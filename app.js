@@ -5,11 +5,11 @@ const sportProfiles = {
     shortLabel: "College hoops",
     pill: "College hoops mode",
     heroLede:
-      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive bracket talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+      "One safe opener, one easy follow-up, and one local angle for bracket talk in about ten seconds.",
     heroProof:
       "Made for the exact moment somebody turns to you and says, \"Did your bracket get smoked too?\"",
     selectorHelper:
-      "Start with College hoops. It is the safest default right now for random office and group-chat sports talk.",
+      "Start with College hoops for the safest default.",
     confidenceNote:
       "In tournament season, broad bracket pain sounds smarter than fake matchup analysis.",
     bestRoom: "Office chat, group text, or any room hijacked by bracket talk.",
@@ -21,10 +21,10 @@ const sportProfiles = {
     localAngle:
       "If they want more, keep it on bracket pain, one upset everybody remembers, or which conference people are mad at.",
     situation: "Office kitchens, awkward client chat, and group texts that suddenly turn into bracket talk.",
-    personalizeTitle: "Want the hometown angle to sound more like your city?",
+    personalizeTitle: "Want a sharper hometown angle?",
     personalizeDescription:
       "Start with the default line. If you want a more local version, enter a common sports market and the example updates instantly. If we do not cover your city yet, we fall back on purpose instead of bluffing.",
-    cityPrompt: "Pick a city if you want the local flavor layered on.",
+    cityPrompt: "City is optional.",
     note: "Human city names only. We cover the major sports markets and use a deliberate broad fallback for everything else."
   },
   nba: {
@@ -33,11 +33,11 @@ const sportProfiles = {
     shortLabel: "NBA",
     pill: "NBA mode",
     heroLede:
-      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive NBA talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+      "One safe opener, one easy follow-up, and one local angle for NBA talk in about ten seconds.",
     heroProof:
       "Made for the exact moment somebody turns to you and says, \"You buying this team in the playoffs or not?\"",
     selectorHelper:
-      "Choose NBA when the room is clearly on playoff pressure, stars, or who looks built for a long series.",
+      "Choose NBA for playoff pressure, stars, or who looks built for a long series.",
     confidenceNote:
       "For NBA talk, one clean opinion about pressure or depth beats fake film-study nonsense.",
     bestRoom: "Office kitchen, client dinner, or bar-TV playoff conversation.",
@@ -49,10 +49,10 @@ const sportProfiles = {
     localAngle:
       "If they want more, stay on stars, depth, and whether you'd trust that team late in Game 6.",
     situation: "Office kitchens, client dinners, and group texts that suddenly turn into playoff talk.",
-    personalizeTitle: "Want to layer in a local NBA market angle?",
+    personalizeTitle: "Want a sharper local NBA angle?",
     personalizeDescription:
       "Use the NBA line first. If you want it to sound more hometown-specific, enter a common sports market and the example sharpens without turning into fake expert talk.",
-    cityPrompt: "City is optional. Sport does the heavy lifting.",
+    cityPrompt: "City is optional.",
     note: "Human city names only. Major markets only. We keep the fallback broad instead of bluffing."
   },
   mlb: {
@@ -61,11 +61,11 @@ const sportProfiles = {
     shortLabel: "MLB",
     pill: "MLB mode",
     heroLede:
-      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive baseball talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+      "One safe opener, one easy follow-up, and one local angle for baseball talk in about ten seconds.",
     heroProof:
       "Made for the exact moment somebody turns to you and says, \"It's early, but are you buying this team?\"",
     selectorHelper:
-      "Choose MLB when the conversation is about long seasons, hot starts, rebuilds, or whether anyone trusts this by October.",
+      "Choose MLB for long-season talk, hot starts, and October trust issues.",
     confidenceNote:
       "For baseball talk, patience and expectations sound more believable than pretending you know the full bullpen.",
     bestRoom: "Office chat, patio drinks, or background-TV baseball talk.",
@@ -77,10 +77,10 @@ const sportProfiles = {
     localAngle:
       "If they want more, keep it on whether the lineup feels real, whether the pitching holds up, and how jumpy that fan base gets.",
     situation: "Office chat, patio drinks, and background-TV baseball conversation.",
-    personalizeTitle: "Want the baseball angle to sound more local?",
+    personalizeTitle: "Want a sharper local baseball angle?",
     personalizeDescription:
       "Start with the MLB line. Then add a city only if you want the hometown version to feel sharper and more believable.",
-    cityPrompt: "Optional city refinement for baseball markets.",
+    cityPrompt: "City is optional.",
     note: "Human city names only. Major markets only. We use a broad fallback on purpose."
   },
   nfl: {
@@ -89,11 +89,11 @@ const sportProfiles = {
     shortLabel: "NFL",
     pill: "NFL mode",
     heroLede:
-      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive football talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+      "One safe opener, one easy follow-up, and one local angle for football talk in about ten seconds.",
     heroProof:
       "Made for the exact moment somebody turns to you and says, \"So are you buying the hype this year?\"",
     selectorHelper:
-      "Choose NFL when the room is running on hype, schedule talk, quarterback trust issues, or general season optimism.",
+      "Choose NFL for hype, quarterback trust issues, and season optimism.",
     confidenceNote:
       "For football chatter, expectations and skepticism land better than pretending you studied every snap.",
     bestRoom: "Office kitchen, client lunch, or sports-bar TV conversation.",
@@ -105,10 +105,10 @@ const sportProfiles = {
     localAngle:
       "If they want more, keep it on quarterback trust, line play, and whether the hype feels earned yet.",
     situation: "Office kitchens, client lunches, and group texts that suddenly become quarterback talk.",
-    personalizeTitle: "Want the football angle to sound more like your city?",
+    personalizeTitle: "Want a sharper local football angle?",
     personalizeDescription:
       "Use the NFL line first. Add a city only if you want the local version underneath. Same idea, less generic.",
-    cityPrompt: "Optional city refinement for football-heavy markets.",
+    cityPrompt: "City is optional.",
     note: "Human city names only. Major markets only. Broad fallback if we do not cover it."
   },
   nhl: {
@@ -117,11 +117,11 @@ const sportProfiles = {
     shortLabel: "NHL",
     pill: "NHL mode",
     heroLede:
-      "Not a Fan gives you one safe opener, one easy follow-up, and one local angle so you can survive hockey talk, office chat, client dinners, group texts, and the bar TV in about ten seconds.",
+      "One safe opener, one easy follow-up, and one local angle for hockey talk in about ten seconds.",
     heroProof:
       "Made for the exact moment somebody turns to you and says, \"So is this team actually built for a playoff run?\"",
     selectorHelper:
-      "Choose NHL when the room is talking playoff grind, depth, hot goalies, or whether a team actually looks sturdy.",
+      "Choose NHL for playoff grind, depth, and hot-goalie talk.",
     confidenceNote:
       "For hockey talk, effort, depth, and playoff nerves sound smarter than bluffing line combinations.",
     bestRoom: "Office chat, arena-adjacent bar talk, or background-TV playoff conversation.",
@@ -133,10 +133,10 @@ const sportProfiles = {
     localAngle:
       "If they want more, keep it on goalie trust, depth, and whether that team looks built for ugly playoff games.",
     situation: "Office chat, playoff bar talk, and group texts that suddenly care about overtime hockey.",
-    personalizeTitle: "Want the hockey version to sound more local?",
+    personalizeTitle: "Want a sharper local hockey angle?",
     personalizeDescription:
       "Start with the NHL line. Then add a city if you want the local market mood layered underneath.",
-    cityPrompt: "Optional city refinement for hockey markets.",
+    cityPrompt: "City is optional.",
     note: "Human city names only. Major markets only. Broad fallback if the city is outside coverage."
   }
 };
@@ -942,19 +942,19 @@ function renderState(options = {}) {
   document.getElementById("selector-helper").textContent = profile.selectorHelper;
   document.getElementById("safe-line-text").textContent = `"${profile.safeLine}"`;
   document.getElementById("safe-line-context").textContent = isFallback
-    ? `No dedicated ${fallbackCity} script yet. ${sport.shortLabel} stays in place and the city layer deliberately falls back to broad.`
+    ? `No dedicated ${fallbackCity} script yet. ${sport.shortLabel} stays broad on purpose.`
     : profile.safeContext;
   document.getElementById("location-pill").textContent = isFallback
     ? `${sport.shortLabel} • broad city fallback for ${fallbackCity}`
     : profile.pill;
   document.getElementById("location-saved").textContent = isFallback
-    ? `${fallbackCity} saved. Sport stays primary, so we are using the broad city fallback on purpose.`
+    ? `${fallbackCity} saved. Using the broad city fallback on purpose.`
     : isDefaultCity
-      ? `${profile.cityPrompt} Still on the broad default.`
+      ? `${profile.cityPrompt} Broad default is active.`
       : `City refinement on: ${cityProfiles[activeCityKey].label}`;
   document.getElementById("hero-follow-up").textContent = profile.followUp;
   document.getElementById("hero-local-angle").textContent = isFallback
-    ? `If someone wants a ${fallbackCity} angle, stay with the broad ${sport.shortLabel} version and let the real fan supply the city details.`
+    ? `If someone wants a ${fallbackCity} angle, stay broad and let the real fan supply the city details.`
     : profile.localAngle;
   document.getElementById("confidence-note").textContent = profile.confidenceNote;
   document.getElementById("best-room").textContent = profile.bestRoom;
@@ -1011,6 +1011,8 @@ function applySport(sportKey, options = {}) {
   window.localStorage.setItem(sportStorageKey, activeSportKey);
   renderState(options);
 
+  document.getElementById("selector-helper").classList.add("is-visible");
+
   if (!options.silent) {
     showToast(`${sportProfiles[activeSportKey].label} selected`);
   }
@@ -1035,9 +1037,9 @@ function applyLocation(rawValue, options = {}) {
   if (!options.silent) {
     showToast(
       result.matched
-        ? `City refinement set to ${cityProfiles[result.cityKey].label}`
+        ? `City set to ${cityProfiles[result.cityKey].label}`
         : result.cleaned
-          ? `${result.cleaned} saved with the broad city fallback`
+          ? `${result.cleaned} saved with broad fallback`
           : "Using the broad city default"
     );
   }

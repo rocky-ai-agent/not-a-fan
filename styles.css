@@ -300,6 +300,20 @@ body::before {
   border: 1px solid rgba(82, 54, 28, 0.1);
 }
 
+.sport-selector-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.jump-link {
+  color: var(--accent-deep);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
 .selector-note {
   margin: 0;
   color: var(--muted);
@@ -308,14 +322,21 @@ body::before {
 }
 
 .selector-helper {
+  display: none;
   margin: 0;
-  padding: 0.72rem 0.78rem;
-  border-radius: 14px;
-  background: rgba(255, 248, 240, 0.9);
-  color: var(--ink);
-  font-size: 0.88rem;
-  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.82rem;
   line-height: 1.45;
+}
+
+.selector-helper.is-visible {
+  display: block;
+  animation: helper-in 160ms ease;
+}
+
+@keyframes helper-in {
+  from { opacity: 0; transform: translateY(-3px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .sport-picks {
@@ -683,6 +704,20 @@ button:disabled {
   .hero-proof {
     margin-top: 0.85rem;
     padding: 0.75rem 0.8rem;
+  }
+
+  .sport-selector {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .selector-helper {
+    padding: 0.52rem 0.62rem;
+    font-size: 0.8rem;
+  }
+
+  .jump-link {
+    font-size: 0.76rem;
   }
 
   .hero-actions,

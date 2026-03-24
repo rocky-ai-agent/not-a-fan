@@ -24,25 +24,28 @@
 
     <main>
       <section class="hero" id="hero">
-        <div class=”hero-copy”>
+        <div class="hero-copy">
           <h1>Sound plugged in without pretending to be a fan.</h1>
-          <p class=”hero-lede” id=”hero-lede”>
+          <p class="hero-lede" id="hero-lede">
             One safe opener, one follow-up, one local angle. Ready in ten seconds.
           </p>
-          <div class=”sport-selector” aria-labelledby=”sport-selector-title”>
-            <p class=”selector-label” id=”sport-selector-title”>Pick the sport</p>
-            <p class=”selector-helper” id=”selector-helper”>Start with College hoops. It is the safest default right now for random office and group-chat sports talk.</p>
-            <div class=”sport-picks” role=”group” aria-label=”Quick sport presets”>
-              <button class=”sport-pick is-active” type=”button” data-sport-preset=”college” aria-pressed=”true”>College hoops</button>
-              <button class=”sport-pick” type=”button” data-sport-preset=”nba” aria-pressed=”false”>NBA</button>
-              <button class=”sport-pick” type=”button” data-sport-preset=”mlb” aria-pressed=”false”>MLB</button>
-              <button class=”sport-pick” type=”button” data-sport-preset=”nfl” aria-pressed=”false”>NFL</button>
-              <button class=”sport-pick” type=”button” data-sport-preset=”nhl” aria-pressed=”false”>NHL</button>
+          <div class="sport-selector" aria-labelledby="sport-selector-title">
+            <div class="sport-selector-topline">
+              <p class="selector-label" id="sport-selector-title">Pick the sport</p>
+              <a class="jump-link" href="#safe-line-card">Jump to the line</a>
+            </div>
+            <p class="selector-helper" id="selector-helper">Start with College hoops for the safest default.</p>
+            <div class="sport-picks" role="group" aria-label="Quick sport presets">
+              <button class="sport-pick is-active" type="button" data-sport-preset="college" aria-pressed="true">College hoops</button>
+              <button class="sport-pick" type="button" data-sport-preset="nba" aria-pressed="false">NBA</button>
+              <button class="sport-pick" type="button" data-sport-preset="mlb" aria-pressed="false">MLB</button>
+              <button class="sport-pick" type="button" data-sport-preset="nfl" aria-pressed="false">NFL</button>
+              <button class="sport-pick" type="button" data-sport-preset="nhl" aria-pressed="false">NHL</button>
             </div>
           </div>
-          <div class=”hero-actions”>
-            <a class=”primary-button hero-link” href=”#cta”>Get the daily line</a>
-            <a class=”ghost-button hero-link” href=”#safe-line-card”>See today's example</a>
+          <div class="hero-actions">
+            <a class="primary-button hero-link" href="#safe-line-card">See the safe line</a>
+            <a class="ghost-button hero-link" href="#cta">Get the daily line</a>
           </div>
         </div>
 
@@ -51,9 +54,9 @@
             <p class="safe-line-label">Today's safe line</p>
             <span class="status-pill" id="location-pill">Default local angle: broad and safe</span>
           </div>
-          <p class="safe-line-coach">If sports comes up right now, use this almost exactly as written.</p>
+          <p class="safe-line-coach">If sports comes up, use this almost exactly.</p>
           <blockquote id="safe-line-text">
-            “This time of year I just ask who ruined everyone's bracket and go from there.”
+            "This time of year I just ask who ruined everyone's bracket and go from there."
           </blockquote>
           <p class="safe-line-context" id="safe-line-context">
             Safe because it works whether the room means March Madness, a local team, or whatever game is on behind you.
@@ -78,7 +81,7 @@
       <section class="personalize-panel" aria-labelledby="personalize-title">
         <div class="personalize-copy">
           <p class="eyebrow">Optional</p>
-          <h2 id="personalize-title">Add your city for a sharper local angle.</h2>
+          <h2 id="personalize-title">Add your city if you want the local angle sharper.</h2>
         </div>
         <form class="location-control" id="location-form">
           <div class="location-topline">
